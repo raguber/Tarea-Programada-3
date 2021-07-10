@@ -9,6 +9,47 @@ import java.io.Serializable;
 public class EntradaDatos implements Serializable
 
 {
+    /** Boceto busqueda en arbol
+     * categoriaABuscar  = 5,7 "EG";
+     * tamanoCategoria = categoriaABuscar.length();
+     * letra = 5 "e"; **Se analizara letra por letra"
+     * contadorLetra = 1; EG tiene dos letras, se empieza por la primera.
+     * valor = valor del Nodo; (letra); 
+     * if(valor != null)
+     *    {
+     *    if(valor>letra);//Recordar que los valores estarian ordenados de mayor a menor
+     *    {
+     *     "Categoria no existente"
+     *     **Esto significa que las letra mientras se busco no concordaron
+     *    }
+     *     else **Valor de la letra menor o igual
+     *     {
+     *        if(valorLetra=letra)
+     *        {
+     *         letra = 7;
+     *         if(tamanoCategoria=contador);
+     *         {
+     *             muestrePeliculas (Peliculas podrian mostrarse buscando en una lista de peliculas);
+     *         }
+     *         else
+     *         {
+     *         busqueLetra = (letra,contadorLetra++,categoriaABuscar)
+     *         }
+     *        else
+     *        {
+     *          ** Si no se encuentra se continua a la derecha;
+     *          if(nodoIzquierod = 
+     *     }
+     *   }
+     * }
+     * else
+     * {
+     *  
+           "Categoria no existente"**En realidad no existen categorias, o sea arbol vacio
+     *  }
+     * 
+     * 
+     */
     public EntradaDatos()
     {
 
@@ -47,6 +88,8 @@ public class EntradaDatos implements Serializable
         }
         return opcionElegida;
     }
+    
+    
 
    
     /**
