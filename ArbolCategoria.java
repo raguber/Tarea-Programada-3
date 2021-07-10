@@ -1,106 +1,73 @@
 
-/**
- * Write a description of class Arbol here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-
-/** Boceto busqueda en arbol
- * categoriaABuscar  = 5,7 "EG";
- * tamanoCategoria = categoriaABuscar.length();
- * letra = 5 "e"; **Se analizara letra por letra"
- * contadorLetra = 1; EG tiene dos letras, se empieza por la primera.
- * valor = valor del Nodo; (letra); 
- * if(valor != null)
- *    {
- *    if(valor>letra);//Recordar que los valores estarian ordenados de mayor a menor
- *    {
- *     "Categoria no existente"
- *     **Esto significa que las letra mientras se busco no concordaron
- *    }
- *     else **Valor de la letra menor o igual
- *     {
- *        if(valorLetra=letra)
- *        {
- *         letra = 7;
- *         if(tamanoCategoria=contador);
- *         {
- *             muestrePeliculas (Peliculas podrian mostrarse buscando en una lista de peliculas);
- *         }
- *         else
- *         {
- *         busqueLetra = (letra,contadorLetra++,categoriaABuscar)
- *         }
- *        else
- *        {
- *          ** Si no se encuentra se continua a la derecha;
- *          if(nodoIzquierod = 
- *     }
- *   }
- * }
- * else
- * {
- *  
-"Categoria no existente"**En realidad no existen categorias, o sea arbol vacio
- *  }
- * 
- * 
- */
-public class ArbolCategoria{
+public class ArbolCategoria
+{
+    int numeroLetra;
+    ArbolCategoria letraIzquierda;//Letra izquierda para letras que necesitan previamente valor del nodo (letra);
+    ArbolCategoria letraDerecha;//Letra derecha para letras que no necesita previamente el valor del nodo (letra);
     ArbolCategoria()
     {
 
     }
 
-    public void busqueCategoria(String cat)
+    public void busqueCategoria(String cat,boolean mostrarCoincidenciaExacta)
     {
         String categoria = cat;
         categoria = categoria.trim();
         int tamanoCategoria = categoria.length();
-        String letraAnalizar = categoria.substring(0,0);
-        int numLetraAnalizar = deNumeroLetra (letraAnalizar);
-        /** Boceto busqueda en arbol
-         * categoriaABuscar  = 5,7 "EG";
-         * tamanoCategoria = categoriaABuscar.length();
-         * letra = 5 "e"; **Se analizara letra por letra"
-         * contadorLetra = 1; EG tiene dos letras, se empieza por la primera.
-         * valor = valor del Nodo; (letra); 
-         * if(valor != null)
-         *    {
-         *    if(valor>letra);//Recordar que los valores estarian ordenados de mayor a menor
-         *    {
-         *     "Categoria no existente"
-         *     **Esto significa que las letra mientras se busco no concordaron
-         *    }
-         *     else **Valor de la letra menor o igual
-         *     {
-         *        if(valorLetra=letra)
-         *        {
-         *         letra = 7;
-         *         if(tamanoCategoria=contador);
-         *         {
-         *             muestrePeliculas (Peliculas podrian mostrarse buscando en una lista de peliculas);
-         *         }
-         *         else
-         *         {
-         *         busqueLetra = (letra,contadorLetra++,categoriaABuscar)
-         *         }
-         *        else
-         *        {
-         *          ** Si no se encuentra se continua a la derecha;
-         *          if(nodoIzquierod = 
-         *     }
-         *   }
-         * }
-         * else
-         * {
-         *  
-        "Categoria no existente"**En realidad no existen categorias, o sea arbol vacio
-         *  }
-         * 
-         * 
-         */
+        String letraAnalizar = categoria.substring(0,1);
+        int numLetraAnalizar = deNumeroLetra(letraAnalizar);
+
+        if(numeroLetra != 0)
+        {
+            if(numLetraAnalizar>numeroLetra)//Ej: se ingresa b(2); y si se esta en a(1) entonces se verifica que exista alguien mayor que a y se manda b al siguiete
+            {
+                if(letraDerecha != null)
+                {
+                    letraDerecha.busqueCategoria (categoria,mostrarCoincidenciaExacta);
+                }
+                else
+                {
+                    System.out.println("Error, no existe peliculas segun la categoria ingresada ");
+                }
+            }
+            else
+            {
+                if(numLetraAnalizar==numeroLetra)//Ej: se ingresa ba(2)(1) y se esta en b(2); entonces si hay mas letras se va a la izquierda y empieza a buscar desde a(1)
+                //En otro caso se encontro una coincidencia y se mostrarian las peliculas iguales a categoria ba o con ba inicialmente
+                {
+                    if(tamanoCategoria>1)//Caso de existir mas letras a analizar
+                    {
+                        categoria = categoria.substring(1);//Se pasa al izquierda y se analiza usando la letra que sigue
+                        letraIzquierda.busqueCategoria(categoria, mostrarCoincidenciaExacta);
+
+                    }
+                    else//Se llego a una categoria exacta
+                    {
+                        if(mostrarCoincidenciaExacta  == true)
+                        {
+                            // mostrarPeliculas();
+                        }
+                        else
+                        {
+                            //mostrarPeliculasInclSubarboles();
+                        }
+                    }
+                }
+                else//Numero Letra menor que la del nodo //Ej, se busca b pero se esta en c, ya se sabe que no existe, de existir una coincidencia no llegaria a c., si no que se quedaria en b
+                //Ejemplo de rama (a)----(c) Si b>a (2>1), entonces a le dice a b que se vaya por el camino a la derecha, pero llega a c, entonces no existe un b guardado.
+                {
+                   
+                    System.out.println("Error, no existe peliculas segun la categoria ingresada");
+                }
+
+            }
+        }
+        else
+        {
+            System.out.println("No existe la categoria");
+            //Por creacion del codigo no debera suceder esto, ya que de una u otra forma
+            //El usuario tendra ya subidas las categorias, 
+        }
 
     }
 
