@@ -1,4 +1,6 @@
-
+/**
+ * Peu
+ */
 public class ArbolCategoria
 {
     int numeroLetra;
