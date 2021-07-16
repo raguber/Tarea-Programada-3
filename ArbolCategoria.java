@@ -34,20 +34,25 @@ public class ArbolCategoria
     public void busqueCategoria(String cat,boolean mostrarCoincidenciaExacta)
     {
         String categoria = cat;
+        System.out.println("Categoria "+categoria);
         categoria = categoria.trim();
         String letraAnalizar = categoria.substring(0,1);
-        int numLetraAnalizar = deNumeroLetra(letraAnalizar);
 
+        int numLetraAnalizar = deNumeroLetra(letraAnalizar);
+        System.out.println("letra "+letraAnalizar+" "+numLetraAnalizar);
         if(numeroLetra != 0)
         {
+            System.out.println ("num letra nodo actual"+numeroLetra);
             if(numLetraAnalizar>numeroLetra)//Ej: se ingresa b(2); y si se esta en a(1) entonces se verifica que exista alguien mayor que a y se manda b al siguiete
             {
+                System.out.println("Letra actual menor que la letra a buscar, a la derecha");
                 if(letraDerecha != null)
                 {
                     letraDerecha.busqueCategoria (categoria,mostrarCoincidenciaExacta);
                 }
                 else
                 {
+                    //En este caso se encuentra con un numero mayor entonces si se tiene b y se busca a, se sabe que a no existe
                     System.out.println("Error, no existe peliculas segun la categoria ingresada ");
                 }
             }
@@ -56,22 +61,36 @@ public class ArbolCategoria
                 if(numLetraAnalizar==numeroLetra)//Ej: se ingresa ba(2)(1) y se esta en b(2); entonces si hay mas letras se va a la izquierda y empieza a buscar desde a(1)
                 //En otro caso se encontro una coincidencia y se mostrarian las peliculas iguales a categoria ba o con ba inicialmente
                 {
+                    System.out.println("letra igual, se debe ir a la izquierda");
                     categoria = categoria.substring(1);
-                    if(categoria.length()>1)//Caso de existir mas letras a analizar
+                    System.out.println(categoria+" categoria nueva");
+                    if(categoria.isEmpty() == true)//Caso de existir mas letras a analizar
                     {
                         //Se pasa al izquierda y se analiza usando la letra que sigue
-                        letraIzquierda.busqueCategoria(categoria, mostrarCoincidenciaExacta);
+                        System.out.println("se encontraron todas las letras, existe categoria");
 
-                    }
-                    else//Se llego a una categoria exacta
-                    {
                         if(mostrarCoincidenciaExacta  == true)
                         {
-                            // mostrarPeliculas();
+                            //Mostar pelicula exacta
                         }
                         else
                         {
                             //mostrarPeliculasInclSubarboles();
+                        }
+
+                    }
+                    else//Se llego a una categoria exacta
+                    {
+                        if(letraIzquierda != null)
+                        {
+                            letraIzquierda.busqueCategoria(categoria, mostrarCoincidenciaExacta);
+                           
+                        }
+                        else
+                        {
+                            //Existe mas letras a buscar pero no existen letras agregadas, por lo cual se sabe que no existe
+                               System.out.println("no mas letras a buscar");
+                            System.out.println("no existe categoria");
                         }
                     }
                 }
@@ -331,6 +350,17 @@ public class ArbolCategoria
         System.out.println("************************************");
         System.out.println("Eas");
         arbol.agregueCategoriaNueva("Eas");
+        System.out.println("*************Busqueda***********");
+        
+        arbol.busqueCategoria("Eas",false);
+        System.out.println("********************************");
+        arbol.busqueCategoria("Asd",false);
+        System.out.println("********************************");
+        arbol.busqueCategoria("Ebs",false);
+        System.out.println("********************************");
+        arbol.busqueCategoria("Ebx",false);//Ebx, exist parcialmente (EB);
+        System.out.println("********************************");
+        arbol.busqueCategoria("Eba",false);//Eba, existe parcialmente (EB);
         //arbol.agregueCategoriaNueva("safsdfsd");
         //arbol.agregueCategoriaNueva("Easffdas");
         //arbol.muestreArbol(arbol);
