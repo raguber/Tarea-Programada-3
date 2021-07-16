@@ -7,12 +7,28 @@ public class ArbolCategoria
     ArbolCategoria letraIzquierda;//Letra izquierda para letras que necesitan previamente valor del nodo (letra);
     ArbolCategoria letraDerecha;//Letra derecha para letras que no necesita previamente el valor del nodo (letra);
     ListaPel listaPeliculas;
-    ArbolCategoria(int num)
+    ArbolCategoria()
     {
-        numeroLetra = num;
+        numeroLetra = 0;
         letraIzquierda = null;
         letraDerecha = null;
         listaPeliculas = null;
+    }
+
+    public void muestreArbol(ArbolCategoria arb)
+    {
+        System.out.println("Arb "+numeroLetra);
+        if(letraIzquierda != null)
+        {
+            System.out.print("iz");
+            muestreArbol(letraIzquierda);
+        }
+        if(letraDerecha  != null)
+        {
+            System.out.println("der");
+            muestreArbol(letraDerecha);
+        }
+
     }
 
     public void busqueCategoria(String cat,boolean mostrarCoincidenciaExacta)
@@ -90,75 +106,124 @@ public class ArbolCategoria
         categoria = categoria.trim();
         int tamanoCategoria = categoria.length();
         String letraAgregar = categoria.substring(0,1);
-        int numLetraAgregar = deNumeroLetra(letraAgregar);
 
-        if(numeroLetra != 0)//La idea para agregar una letra es similar a la busqueda.
+        int numLetraAgregar = deNumeroLetra(letraAgregar);
+        System.out.println("Letra "+letraAgregar+" num "+numLetraAgregar);
+
+        if(numeroLetra == 0)
         {
-            if(numLetraAgregar>numeroLetra)//Ej: se ingresa b(2); y si se esta en a(1) entonces se verifica que exista alguien mayor que a y se manda b al siguiete
+            System.out.println("Letra no existe");
+
+            numeroLetra = numLetraAgregar;
+
+            categoria = categoria.substring(1);
+
+            //Se mete a la izquierda
+            if(categoria.isEmpty()==true)
             {
-                if(letraDerecha != null)
+                System.out.println("No hay mas");
+                //AgreguePeliculaAqui, else
+            }
+            else
+            {
+                if(letraIzquierda == null)
                 {
+                    System.out.println("A la izquierda");
+                    letraIzquierda = new ArbolCategoria();
+                    letraIzquierda.agregueCategoriaNueva(categoria);
+
+                }
+                else
+                {
+                    System.out.println("letra iz "+letraIzquierda.numeroLetra);
+                    System.out.println("letraIzquierdaExiste");
+                    letraIzquierda.agregueCategoriaNueva(categoria);
+                    if(letraIzquierda.numeroLetra > numLetraAgregar)
+                    {
+
+                    }
+                }
+            }
+
+        }
+        else
+        {
+            System.out.println("Letra existe guardada"+numeroLetra);
+
+            if(numeroLetra<numLetraAgregar)
+            {
+                System.out.println("A la derecha, la letra no es igual y es mayor que la actual "+numeroLetra +" "+numLetraAgregar);
+                //Aqui se revisa el proximo,
+                if(letraDerecha == null)
+                {
+                    System.out.println("Letra derecha null");
+                    letraDerecha = new ArbolCategoria();
                     letraDerecha.agregueCategoriaNueva(categoria);
                 }
                 else
                 {
-                    letraDerecha = new ArbolCategoria(numeroLetra);
-                    categoria = categoria.substring(1);
-                    if(categoria.length()>1)
+                    System.out.println("Letra no null");
+                    if(letraDerecha.numeroLetra>numLetraAgregar)
                     {
+                        System.out.println("Existe Letra derecha pero mayor que letra agregar "+numLetraAgregar+" "+letraIzquierda.numeroLetra);
+                        ArbolCategoria letraDerechaTemp = letraDerecha;
+                        ArbolCategoria  nuevaLetraDerechaTemp = new ArbolCategoria();
+                        letraDerecha = nuevaLetraDerechaTemp;
+                        letraDerecha.letraDerecha = letraDerechaTemp;
                         letraDerecha.agregueCategoriaNueva(categoria);
+                    }
+                    else
+                    {
+                        if(letraDerecha.numeroLetra==numLetraAgregar)
+                        {
+                            letraDerecha.agregueCategoriaNueva(categoria);
+                        }
                     }
                 }
             }
-            else
+            if(numeroLetra==numLetraAgregar)
             {
-                if(numLetraAgregar==numeroLetra)//Ej: se ingresa ba(2)(1) y se esta en b(2); entonces si hay mas letras se va a la izquierda y empieza a buscar desde a(1)
-                //En otro caso se encontro una coincidencia y se mostrarian las peliculas iguales a categoria ba o con ba inicialmente
+                System.out.println("LetraIgual , a la izquierda");
+                categoria = categoria.substring(1);
+
+                if(categoria.isEmpty()==true)
                 {
-                    categoria = categoria.substring(1);
-                    if(categoria.length()>1)//Caso de existir mas letras a analizar
+                    //AgregueCategoria;
+                }
+                else
+                {
+                    letraAgregar = categoria.substring(0,1);
+                    numLetraAgregar = deNumeroLetra(letraAgregar);
+                    if(letraIzquierda == null)
                     {
-                        //Se pasa al izquierda y se analiza usando la letra que sigue
-                        if(letraIzquierda == null)
+                        System.out.println("Letra no existe");
+                        letraIzquierda = new ArbolCategoria();
+                        letraIzquierda.agregueCategoriaNueva(categoria);
+                    }
+                    else
+                    {
+                        System.out.println(letraIzquierda.numeroLetra+" "+numLetraAgregar);
+                        if(letraIzquierda.numeroLetra>numLetraAgregar)
                         {
-                            letraIzquierda = new ArbolCategoria(numeroLetra);
-                              letraIzquierda.agregueCategoriaNueva(categoria.substring(1));
+                            System.out.println("Existe Letra izq pero mayor que letra agregar "+numLetraAgregar+" "+letraIzquierda.numeroLetra+" se mete letra en medio");
+                            ArbolCategoria letraIzquierdaTemp = letraIzquierda;
+                            ArbolCategoria nuevaLetraIzquierda = new ArbolCategoria();
+                            letraIzquierda = nuevaLetraIzquierda;
+
+                            letraIzquierda.letraDerecha = letraIzquierdaTemp;
+                            letraIzquierda.agregueCategoriaNueva(categoria);
                         }
                         else
                         {
+                            System.out.println("Letra izquierda menor que letra agregar");
                             letraIzquierda.agregueCategoriaNueva(categoria);
                         }
 
                     }
-                }
 
-            }
-        }
-        else
-        {
-            //"No existe la categoria"
-            numeroLetra = deNumeroLetra(letraAgregar);
-            if(categoria.length()>=1)
-            {
-                categoria = categoria.substring(1);
-            }
-            if(categoria.length()>=1)
-            {
-              
-                if(letraIzquierda == null)
-                {
-                    letraIzquierda = new ArbolCategoria(0);
-                    letraIzquierda.agregueCategoriaNueva(categoria.substring(1));
                 }
-                else
-                {
-                    letraIzquierda.agregueCategoriaNueva(categoria.substring(1));
-                }
-
             }
 
-            //Por creacion del codigo no debera suceder esto, ya que de una u otra forma
-            //El usuario tendra ya subidas las categorias, 
         }
 
     }
@@ -257,22 +322,33 @@ public class ArbolCategoria
 
     public static void main (String args[])
     {
-        ArbolCategoria arbol = new ArbolCategoria(1);
-        String cat = " E Gsdg " ;
-        System.out.println("Categoria "+cat); 
-        String categoria = cat.trim();
-        System.out.println("*"+categoria+"* sin espacios");
-        String categoriaDesdeG = categoria.substring(2);
-        System.out.println(categoriaDesdeG);
-        int tamanoCategoria = categoria.length();
-        System.out.println("Tamano categoria "+tamanoCategoria);
-        String letraAnalizar = categoria.substring(0,1);
-        System.out.println("letra a analizar :"+letraAnalizar);
-        String letraAnalizarSinPrimera = categoria.substring(0,1);
-        String letraPruebaSimbolosRaros = "*";
-        System.out.println("Numero de simbolo *"+arbol.deNumeroLetra(letraPruebaSimbolosRaros));
-        letraPruebaSimbolosRaros = "!";
-        System.out.println("Numero de simbolo !"+arbol.deNumeroLetra(letraPruebaSimbolosRaros));;
+        //Se hizo una prueba entonces, es posible reducir solo si es 1;
+        ArbolCategoria arbol = new ArbolCategoria();
+        arbol.agregueCategoriaNueva("A");//Por default se agrega a;
+        System.out.println("Ebs");
+        arbol.agregueCategoriaNueva("Ebs");
+
+        System.out.println("************************************");
+        System.out.println("Eas");
+        arbol.agregueCategoriaNueva("Eas");
+        //arbol.agregueCategoriaNueva("safsdfsd");
+        //arbol.agregueCategoriaNueva("Easffdas");
+        //arbol.muestreArbol(arbol);
+        // String cat = " E Gsdg " ;
+        // System.out.println("Categoria "+cat); 
+        // String categoria = cat.trim();
+        // System.out.println("*"+categoria+"* sin espacios");
+        // String categoriaDesdeG = categoria.substring(2);
+        // System.out.println(categoriaDesdeG);
+        // int tamanoCategoria = categoria.length();
+        // System.out.println("Tamano categoria "+tamanoCategoria);
+        // String letraAnalizar = categoria.substring(0,1);
+        // System.out.println("letra a analizar :"+letraAnalizar);
+        // String letraAnalizarSinPrimera = categoria.substring(0,1);
+        // String letraPruebaSimbolosRaros = "*";
+        // System.out.println("Numero de simbolo *"+arbol.deNumeroLetra(letraPruebaSimbolosRaros));
+        // letraPruebaSimbolosRaros = "!";
+        // System.out.println("Numero de simbolo !"+arbol.deNumeroLetra(letraPruebaSimbolosRaros));;
     }
 
 }
