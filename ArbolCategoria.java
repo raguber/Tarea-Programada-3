@@ -116,7 +116,19 @@ public class ArbolCategoria
     {
         agregueCategoriaNueva(cat);//No hace falta verificar si ya existe, por de hacerlo se tendria que recorrer el arbol dos veces, uno para ver si existe "x" categoria y la segunda para agregar letras que no existam
         //El codigo va a ser eso en un solo proceso
-
+        
+        /**
+         * while(
+         * 
+         * "p1"";"action,drama,comedia ";actores "
+         * arbolCategoria.agregue(action);
+         * categoria += action;
+         * 
+         * id
+         * categoria
+         * actor
+         * }
+         */
     }
 
     public void agregueCategoriaNueva(String cat)
@@ -344,23 +356,23 @@ public class ArbolCategoria
         //Se hizo una prueba entonces, es posible reducir solo si es 1;
         ArbolCategoria arbol = new ArbolCategoria();
         arbol.agregueCategoriaNueva("A");//Por default se agrega a;
-        System.out.println("Ebs");
-        arbol.agregueCategoriaNueva("Ebs");
+        System.out.println("Accion");
+        arbol.agregueCategoriaNueva("Accion");
 
         System.out.println("************************************");
-        System.out.println("Eas");
-        arbol.agregueCategoriaNueva("Eas");
+        System.out.println("action");
+        arbol.agregueCategoriaNueva("Action");
         System.out.println("*************Busqueda***********");
         
         arbol.busqueCategoria("Eas",false);
         System.out.println("********************************");
-        arbol.busqueCategoria("Asd",false);
+        //arbol.busqueCategoria("Asd",false);
         System.out.println("********************************");
-        arbol.busqueCategoria("Ebs",false);
+        //arbol.busqueCategoria("Ebs",false);
         System.out.println("********************************");
-        arbol.busqueCategoria("Ebx",false);//Ebx, exist parcialmente (EB);
+        //arbol.busqueCategoria("Ebx",false);//Ebx, exist parcialmente (EB);
         System.out.println("********************************");
-        arbol.busqueCategoria("EbaASD",false);//Eba, existe parcialmente (EB);
+        //arbol.busqueCategoria("EbaASD",false);//Eba, existe parcialmente (EB);
         //arbol.agregueCategoriaNueva("safsdfsd");
         //arbol.agregueCategoriaNueva("Easffdas");
         //arbol.muestreArbol(arbol);
