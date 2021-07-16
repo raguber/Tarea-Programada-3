@@ -9,7 +9,7 @@ public class ArbolCategoria
     ListaPel listaPeliculas;
     ArbolCategoria()
     {
-        numeroLetra = 0;
+        numeroLetra = 0;//Pruebas
         letraIzquierda = null;
         letraDerecha = null;
         listaPeliculas = null;
