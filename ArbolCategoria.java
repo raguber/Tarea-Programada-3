@@ -360,7 +360,7 @@ public class ArbolCategoria
         System.out.println("********************************");
         arbol.busqueCategoria("Ebx",false);//Ebx, exist parcialmente (EB);
         System.out.println("********************************");
-        arbol.busqueCategoria("Eba",false);//Eba, existe parcialmente (EB);
+        arbol.busqueCategoria("EbaASD",false);//Eba, existe parcialmente (EB);
         //arbol.agregueCategoriaNueva("safsdfsd");
         //arbol.agregueCategoriaNueva("Easffdas");
         //arbol.muestreArbol(arbol);
