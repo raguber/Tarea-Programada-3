@@ -1,5 +1,5 @@
 /**
- * Peu
+ * Prueba
  */
 public class ArbolCategoria
 {
