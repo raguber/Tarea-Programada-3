@@ -1,8 +1,9 @@
 /**
- * Write a description of class Pelicula here.
+ * Clase Pelicula, la cual descompone cada hilera en objetos pelicula con sus 
+ * respectivos atributos.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Randy Agüero B90082, Frayvin Alvarado B60292 y Andrés Serrano C07483
+ * @version 20/7/2021
  */
 public class Pelicula
 {
@@ -42,62 +43,99 @@ public class Pelicula
 
     /**
      * METODOS
-     */
+    */
+    
+    /** Devuelve un String con el identificador del show
+    * @return show_id el identificador
+    */
     public String getShow_id()
     {
         return show_id;
     }
     
+    /** Devuelve un String con el Tipo
+    * @return tipo
+    */
     public String getTipo()
     {
         return show_id;
     }
     
+    /** Devuelve un String con el Titulo o nombre del show
+    * @return titulo
+    */
     public String getTitulo()
     {
         return titulo;
     }
     
+    /** Devuelve un String con el Director del show 
+    * @return director
+    */
     public String getDirector()
     {
         return director;
     }
     
+    /** Devuelve un String con el reparto del show, separados por comas
+    * @return cast
+    */
     public String getCast()
     {
         return cast;
     }
     
+    /** Devuelve un String con el país del show
+    * @return pais
+    */
     public String getPais()
     {
         return pais;
     }
     
+    /** Devuelve un String con la fecha de produccion del show
+    * @return fecha
+    */
     public String getFecha()
     {
         return fecha;
     }
     
+    /** Devuelve un String con el año de produccion del show
+    * @return anio
+    */
     public String getAnio()
     {
         return anio;
     }
     
+    /** Devuelve un String con el numero de audiencia del show
+    * @return audiencia
+    */
     public String getAudiencia()
     {
         return audiencia;
     }
     
+    /** Devuelve un String con la duracion del show
+    * @return duracion
+    */
     public String getDuracion()
     {
         return duracion;
     }
     
+    /** Devuelve un String con las categoria del show, separadas por comas
+    * @return categoria
+    */
     public String getCategoria()
     {
         return categoria;
     }
     
+    /** Devuelve un String con la descripcion del show
+    * @return descripcion
+    */
     public String getDescripcion()
     {
         return descripcion;
