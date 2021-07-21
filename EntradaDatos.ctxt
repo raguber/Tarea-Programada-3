@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=EntradaDatos
-comment0.text=\r\n\ @author\ Randy\ Ag\u00FCero\ B90082\ y\ Andr\u00E9s\ Serrano\ C07483\r\n\ Esta\ clase\ se\ usara\ para\ pedir\ datos\ al\ usuario\r\n
+comment0.text=\r\n\ @author\ Randy\ Ag\u00FCero\ B90082,\ Frayvin\ Alvarado\ B60292\ y\ Andr\u00E9s\ Serrano\ C07483\r\n\ Esta\ clase\ se\ usara\ para\ pedir\ datos\ al\ usuario\r\n
 comment1.params=
 comment1.target=EntradaDatos()
 comment2.params=mensaje\ opcionMaxima\ opcionMinima

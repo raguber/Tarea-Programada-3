@@ -39,12 +39,11 @@ public class Lector{
     Lee e instancia todas las líneas del documento. Con cada línea leída crea un objeto película
      */
     public void lea()throws IOException{
-        String line=bure.readLine();
         /**
          * line = "Antonio Banderas;San son; action, drama, comedia, duracion , et;
          * int posicionPuntoComa = indexOf(";");
          * Actor = line.substring(0,posicionPuntoComa
-         * line = line.Substring(0,posicionPuntoComa);
+         * line = line-line.Substring(0,posicionPuntoComa);
          * line San son; action, drama, comedia;
          * psocionPuntoComa = indexOf(";");
          * Nombre = line-substring(0,posicion);
@@ -63,7 +62,7 @@ public class Lector{
 
          *  Pelicula peli = new Pelicula(actor,nombre,categoria)
          *  
-
+        
         ArbolCategoria.agreguePelicula(Peli);
         while(line!=null){
         //System.out.println(line+" ");
@@ -81,11 +80,13 @@ public class Lector{
          *   }
          * 
          */
-        Pelicula p = new Pelicula(line);
-        line=bure.readLine();
+        String line=bure.readLine();
+        while(line!=null){
+            Pelicula p = new Pelicula(line);
+            line=bure.readLine();
+        }
     }
-
-
+        
     /**
     Cierra el FileReader y el BufferedReader
      */

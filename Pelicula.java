@@ -9,6 +9,7 @@ public class Pelicula
 {
     //Instancias
     private Pelicula p;
+    Pelicula next;
     String show_id;
     String tipo;
     String titulo;
@@ -26,19 +27,67 @@ public class Pelicula
      */
     public Pelicula(String v)
     {
-        String l[]=v.split(";");
-        show_id=l[0];
-        tipo=l[1];
-        titulo=l[2];
-        director=l[3];
-        cast=l[4];
-        pais=l[5];
-        fecha=l[6];
-        anio=l[7];
-        audiencia=l[8];
-        duracion=l[9];
-        categoria=l[10];
-        descripcion=l[11];        
+        int pos = v.indexOf(";");
+        show_id=v.substring(0,pos);//ABC;DEF;GHI
+        v=v.substring(pos+1,v.length());//DEF;GHI
+        
+        pos = v.indexOf(";");
+        tipo=v.substring(0,pos);
+        v=v.substring(pos+1,v.length());
+        
+        pos = v.indexOf(";");
+        titulo=v.substring(0,pos);
+        v=v.substring(pos+1,v.length());
+        
+        pos = v.indexOf(";");
+        director=v.substring(0,pos);
+        v=v.substring(pos+1,v.length());
+        
+        pos = v.indexOf(";");
+        cast=v.substring(0,pos);
+        v=v.substring(pos+1,v.length());
+        
+        pos = v.indexOf(";");
+        pais=v.substring(0,pos);
+        v=v.substring(pos+1,v.length());
+        
+        pos = v.indexOf(";");
+        fecha=v.substring(0,pos);
+        v=v.substring(pos+1,v.length());
+        
+        pos = v.indexOf(";");
+        anio=v.substring(0,pos);
+        v=v.substring(pos+1,v.length());
+        
+        pos = v.indexOf(";");
+        audiencia=v.substring(0,pos);
+        v=v.substring(pos+1,v.length());
+        
+        pos = v.indexOf(";");
+        duracion=v.substring(0,pos);
+        v=v.substring(pos+1,v.length());
+        
+        pos = v.indexOf(";");
+        categoria=v.substring(0,pos);
+        v=v.substring(pos+1,v.length());
+        
+        pos = v.indexOf(";");
+        descripcion=v.substring(0,pos);
+        v=v.substring(pos+1,v.length());
+        // String l[]=v.split(";");
+        // show_id=l[0];
+        // tipo=l[1];
+        // titulo=l[2];
+        // director=l[3];
+        // cast=l[4];
+        // pais=l[5];
+        // fecha=l[6];
+        // anio=l[7];
+        // audiencia=l[8];
+        // duracion=l[9];
+        // categoria=l[10];
+        // descripcion=l[11];
+        
     }
 
     /**
