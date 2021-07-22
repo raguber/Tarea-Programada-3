@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.io.Serializable;
 
 /**
- * @author Randy Agüero B90082 y Andrés Serrano C07483
+ * @author Randy Agüero B90082, Frayvin Alvarado B60292 y Andrés Serrano C07483
  * Esta clase se usara para pedir datos al usuario
  */
 public class EntradaDatos implements Serializable

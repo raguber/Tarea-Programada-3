@@ -7,20 +7,31 @@
  */
 public class ListaPel
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
     Pelicula peli;
-
-    public ListaPel()
-    {
-        // initialise instance variables
-        x = 0;
+    //ListaPel next;
+    String categoria;
+    public ListaPel(String cat){
+        categoria=cat;
     }
     
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public void compare(Pelicula x){
+        String cats = x.getCategoria();
+        String estaCategoria;
+        while(cats.length()!=0){
+            int pos = cats.indexOf(",");
+            estaCategoria=cats.substring(0,pos);
+            if(estaCategoria.equals(categoria)){
+                add(x);
+                break;
+            }
+        }
+    }
+    
+    public void add(Pelicula x){
+        if(peli==null ){
+            peli = x;
+        }else if(peli!=null){
+            peli.add(x);
+        }
     }
 }
