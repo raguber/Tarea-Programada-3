@@ -1,9 +1,8 @@
-<<<<<<< HEAD
-#Fri Jul 23 12:43:52 CST 2021
+#Fri Jul 23 12:53:24 CST 2021
 bluej.teamsettings.ignore1=.*\\.class
 bluej.teamsettings.yourName=randyaguero
 bluej.teamsettings.git.server=github.com
-bluej.teamsettings.yourEmail=randyaguero1009@gmail.com
+bluej.teamsettings.yourEmail=randycr6@gmail.com
 bluej.teamsettings.git.repositoryPrefix=/raguber/Tarea-Programada-3
 bluej.teamsettings.vcs=git
 bluej.teamsettings.user=raguber
@@ -16,22 +15,3 @@ bluej.teamsettings.ignore7=.*\\\#backup
 bluej.teamsettings.ignore6=.*\\\#
 bluej.teamsettings.git.protocol=https
 bluej.teamsettings.ignore8=\\.DS_Store
-=======
-#Thu Jul 22 12:00:23 CST 2021
-bluej.teamsettings.ignore1=.*\\.class
-bluej.teamsettings.yourName=Randy Aguero Bermudez
-bluej.teamsettings.git.server=github.com
-bluej.teamsettings.yourEmail=randyaguero1009@gmail.com
-bluej.teamsettings.git.repositoryPrefix=/raguber/Tarea-Programada-3
-bluej.teamsettings.vcs=git
-bluej.teamsettings.user=raguber
-bluej.teamsettings.ignore3=team\\.defs
-bluej.teamsettings.ignore2=bluej\\.pkh
-bluej.teamsettings.ignore5=.*\\~
-bluej.teamsettings.git.branch=
-bluej.teamsettings.ignore4=.*\\.ctxt
-bluej.teamsettings.ignore7=.*\\\#backup
-bluej.teamsettings.ignore6=.*\\\#
-bluej.teamsettings.git.protocol=https
-bluej.teamsettings.ignore8=\\.DS_Store
->>>>>>> c1321cb95fde79535cb7220b354e9e34e4c51bff
