@@ -529,6 +529,7 @@ public class arbolPeliculas
     {
         //Se hizo una prueba entonces, es posible reducir solo si es 1;
         arbolPeliculas arbol = new arbolPeliculas();
+        //Sdas
         arbol.agregueHileraNueva("A");//Por default se agrega a;
         System.out.println("Accion");
         arbol.agregueHileraNueva("Accion");
