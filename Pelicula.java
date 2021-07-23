@@ -3,7 +3,7 @@
  * respectivos atributos.
  * 
  * @author Randy Agüero B90082, Frayvin Alvarado B60292 y Andrés Serrano C07483
- * @version 20/7/2021
+ * @version 23/7/2021
  */
 public class Pelicula
 {
@@ -14,20 +14,36 @@ public class Pelicula
     String tipo;
     String titulo;
     String director;
-    String cast; //Podria ser un arbol
+    String cast;
     String pais;
     String fecha;
     String anio;
     String audiencia;
     String duracion;
-    String categoria; //Hacer una lista dinamica o arbol
+    String categoria;
     String descripcion;
     /**
      * CONSTRUCTOR
      */
-    public Pelicula(String v)
+    public Pelicula(String elShow_id, String elTipo, String elTitulo, String elDirector, String elCast, String elPais, String laFecha, String elAnio,
+    String laAudiencia, String laDuracion, String lasCategorias, String laDescripcion)
     {
-       // Pelicula.show_id = show_id_nuevo; 
+       show_id=elShow_id;
+       tipo=elTipo;
+       titulo=elTitulo;
+       director=elDirector;
+       cast=elCast;
+       pais=elPais;
+       fecha=laFecha;
+       anio=elAnio;
+       audiencia=laAudiencia;
+       duracion=laDuracion;
+       categoria=lasCategorias;
+       descripcion=laDescripcion;
+        
+        ///////////////////////////////////////////////////////////////////////////
+        // Pelicula.show_id = show_id_nuevo; 
+       /**
         int pos = v.indexOf(";");
         show_id=v.substring(0,pos);//ABC;DEF;GHI
         v=v.substring(pos+1,v.length());//DEF;GHI
@@ -75,24 +91,12 @@ public class Pelicula
         pos = v.indexOf(";");
         descripcion=v.substring(0,pos);
         v=v.substring(pos+1,v.length());
-        
+        */
+       
+       
         /**
          * agreguePelicula(categoria,pelicual):
          */
-        // String l[]=v.split(";");
-        // show_id=l[0];
-        // tipo=l[1];
-        // titulo=l[2];
-        // director=l[3];
-        // cast=l[4];
-        // pais=l[5];
-        // fecha=l[6];
-        // anio=l[7];
-        // audiencia=l[8];
-        // duracion=l[9];
-        // categoria=l[10];
-        // descripcion=l[11];
-        
     }
 
     /**
@@ -195,13 +199,21 @@ public class Pelicula
         return descripcion;
     }
     
-    /****
-     * Este metodo muestra los valores de la pelicula
-     * 
+    /** Permite modificar el String de categorias
+    * @param String newCat (la categoria modificada)
+    */
+    public void setCategoria(String newCat)
+    {
+        categoria=newCat;
+    }
+    
+    /** Este metodo imprime todos los valores de la pelicula
+    * 
      */
     public void muestre()
     {
-        
+        System.out.println("Show id: "+ show_id + " Tipo: "+tipo+" Titulo: "+titulo+" Director: "+director+" Cast: "+cast+" Pais: "+pais+" Fecha: "+fecha+" Anio: "+anio+
+        " Audiencia: "+audiencia+" Duracion: "+duracion+" Categoria: "+categoria+" Descripcion: "+descripcion);
     }
     public void agregue(Pelicula peli)
     {

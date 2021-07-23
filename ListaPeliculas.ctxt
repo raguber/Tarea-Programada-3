@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=ListaPeliculas
+comment1.params=
+comment1.target=ListaPeliculas()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ ListaPeliculas\r\n
+comment2.params=
+comment2.target=void\ muestre()
+comment3.params=peli
+comment3.target=void\ agregue(Pelicula)
+numComments=4
