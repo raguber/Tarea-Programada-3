@@ -194,4 +194,17 @@ public class Pelicula
     {
         return descripcion;
     }
+    
+    /****
+     * Este metodo muestra los valores de la pelicula
+     * 
+     */
+    public void muestre()
+    {
+        
+    }
+    public void agregue(Pelicula peli)
+    {
+        
+    }
 }
