@@ -1,17 +1,19 @@
 #BlueJ class context
 comment0.target=Lector
-comment0.text=\r\nClase\ encargada\ de\ leer\ todas\ las\ pel\u00EDculas\ e\ instanciarlas\ en\ objetos\ Pelicula\r\n
+comment0.text=\nClase\ encargada\ de\ leer\ todas\ las\ pel\u00EDculas\ e\ instanciarlas\ en\ objetos\ Pelicula\n
 comment1.params=
 comment1.target=Lector()
-comment1.text=\r\n\ \ \ \ Constructor.\ Crea\ los\ objetos\ File\ necesarios\ para\ leer\ las\ l\u00EDneas\ del\ documento\ que\ contiene\ las\ pel\u00EDculas.\r\n
+comment1.text=\n\ \ \ \ Constructor.\ Crea\ los\ objetos\ File\ necesarios\ para\ leer\ las\ l\u00EDneas\ del\ documento\ que\ contiene\ las\ pel\u00EDculas.\n
 comment2.params=
 comment2.target=void\ readTest()
+comment2.text=\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Administracion\ de\ lectura\n\ *******************************************************************\n
 comment3.params=
 comment3.target=void\ lea()
-comment3.text=\r\n\ \ \ \ Lee\ e\ instancia\ todas\ las\ l\u00EDneas\ del\ documento.\ Con\ cada\ l\u00EDnea\ le\u00EDda\ crea\ un\ objeto\ pel\u00EDcula\r\n
+comment3.text=\n\ \ \ \ Lee\ e\ instancia\ todas\ las\ l\u00EDneas\ del\ documento.\ Con\ cada\ l\u00EDnea\ le\u00EDda\ crea\ un\ objeto\ pel\u00EDcula\n
 comment4.params=
 comment4.target=void\ cierre()
-comment4.text=\r\n\ \ \ \ Cierra\ el\ FileReader\ y\ el\ BufferedReader\r\n
+comment4.text=\n\ \ \ \ Cierra\ el\ FileReader\ y\ el\ BufferedReader\n
 comment5.params=Args
 comment5.target=void\ main(java.lang.String[])
+comment5.text=\n\ Administracion\ de\ categorias\n\ *******************************************************************\n
 numComments=6
