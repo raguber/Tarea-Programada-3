@@ -8,14 +8,14 @@
  * @version 20/7/2021
  *
  */
-public class arbolPeliculas
+public class ArbolPeliculas
 {
     int numeroLetra;
-    arbolPeliculas letraIzquierda;//Letra izquierda para letras que necesitan previamente valor del nodo (letra);
-    arbolPeliculas letraDerecha;//Letra derecha para letras que no necesita previamente el valor del nodo (letra);
+    ArbolPeliculas letraIzquierda;//Letra izquierda para letras que necesitan previamente valor del nodo (letra);
+    ArbolPeliculas letraDerecha;//Letra derecha para letras que no necesita previamente el valor del nodo (letra);
     Pelicula pelicula;
     ListaPeliculas listaPeliculas;
-    arbolPeliculas()
+    ArbolPeliculas()
     {
         numeroLetra = 0;//Pruebas
         letraIzquierda = null;
@@ -24,7 +24,7 @@ public class arbolPeliculas
         listaPeliculas = null;
     }
 
-    public void muestreArbol(arbolPeliculas arb)
+    public void muestreArbol(ArbolPeliculas arb)
     {
         System.out.println("Arb "+numeroLetra);
         if(letraIzquierda != null)
@@ -356,7 +356,7 @@ public class arbolPeliculas
                 if(letraIzquierda == null)
                 {
                     System.out.println("A la izquierda");
-                    letraIzquierda = new arbolPeliculas();
+                    letraIzquierda = new ArbolPeliculas();
                     letraIzquierda.agregueHileraNueva(Hilera);
 
                 }
@@ -384,7 +384,7 @@ public class arbolPeliculas
                 if(letraDerecha == null)
                 {
                     System.out.println("Letra derecha null");
-                    letraDerecha = new arbolPeliculas();
+                    letraDerecha = new ArbolPeliculas();
                     letraDerecha.agregueHileraNueva(Hilera);
                 }
                 else
@@ -393,8 +393,8 @@ public class arbolPeliculas
                     if(letraDerecha.numeroLetra>numLetraAgregar)
                     {
                         System.out.println("Existe Letra derecha pero mayor que letra agregar "+numLetraAgregar+" "+letraIzquierda.numeroLetra);
-                        arbolPeliculas letraDerechaTemp = letraDerecha;
-                        arbolPeliculas  nuevaLetraDerechaTemp = new arbolPeliculas();
+                        ArbolPeliculas letraDerechaTemp = letraDerecha;
+                        ArbolPeliculas  nuevaLetraDerechaTemp = new ArbolPeliculas();
                         letraDerecha = nuevaLetraDerechaTemp;
                         letraDerecha.letraDerecha = letraDerechaTemp;
                         letraDerecha.agregueHileraNueva(Hilera);
@@ -424,7 +424,7 @@ public class arbolPeliculas
                     if(letraIzquierda == null)
                     {
                         System.out.println("Letra no existe");
-                        letraIzquierda = new arbolPeliculas();
+                        letraIzquierda = new ArbolPeliculas();
                         letraIzquierda.agregueHileraNueva(Hilera);
                     }
                     else
@@ -433,8 +433,8 @@ public class arbolPeliculas
                         if(letraIzquierda.numeroLetra>numLetraAgregar)
                         {
                             System.out.println("Existe Letra izq pero mayor que letra agregar "+numLetraAgregar+" "+letraIzquierda.numeroLetra+" se mete letra en medio");
-                            arbolPeliculas letraIzquierdaTemp = letraIzquierda;
-                            arbolPeliculas nuevaLetraIzquierda = new arbolPeliculas();
+                            ArbolPeliculas letraIzquierdaTemp = letraIzquierda;
+                            ArbolPeliculas nuevaLetraIzquierda = new ArbolPeliculas();
                             letraIzquierda = nuevaLetraIzquierda;
 
                             letraIzquierda.letraDerecha = letraIzquierdaTemp;
@@ -549,45 +549,9 @@ public class arbolPeliculas
 
     public static void main (String args[])
     {
-        //Se hizo una prueba entonces, es posible reducir solo si es 1;
-        arbolPeliculas arbol = new arbolPeliculas();
-        //Sdas
-        arbol.agregueHileraNueva("A");//Por default se agrega a;
-        System.out.println("Accion");
-        arbol.agregueHileraNueva("Accion");
-        //asdf
-        System.out.println("************************************");
-        System.out.println("Action * 2 & -+}} asd");
-        arbol.agregueHileraNueva("Action * 2 & -+}} asd");
-        System.out.println("*************Busqueda***********");
-
-        arbol.busqueHilera("Action s asd",false);
-        System.out.println("********************************");
-        //arbol.busqueHilera("Asd",false);
-        System.out.println("********************************");
-        //arbol.busqueHilera("Ebs",false);
-        System.out.println("********************************");
-        //arbol.busqueHilera("Ebx",false);//Ebx, exist parcialmente (EB);
-        System.out.println("********************************");
-        //arbol.busqueHilera("EbaASD",false);//Eba, existe parcialmente (EB);
-        //arbol.agregueHileraNueva("safsdfsd");
-        //arbol.agregueHileraNueva("Easffdas");
-        //arbol.muestreArbol(arbol);
-        // String cat = " E Gsdg " ;
-        // System.out.println("Hilera "+cat); 
-        // String Hilera = cat.trim();
-        // System.out.println("*"+Hilera+"* sin espacios");
-        // String HileraDesdeG = Hilera.substring(2);
-        // System.out.println(HileraDesdeG);
-        // int tamanoHilera = Hilera.length();
-        // System.out.println("Tamano Hilera "+tamanoHilera);
-        // String letraAnalizar = Hilera.substring(0,1);
-        // System.out.println("letra a analizar :"+letraAnalizar);
-        // String letraAnalizarSinPrimera = Hilera.substring(0,1);
-        // String letraPruebaSimbolosRaros = "*";
-        // System.out.println("Numero de simbolo *"+arbol.deNumeroLetra(letraPruebaSimbolosRaros));
-        // letraPruebaSimbolosRaros = "!";
-        // System.out.println("Numero de simbolo !"+arbol.deNumeroLetra(letraPruebaSimbolosRaros));;
+       ArbolPeliculas peliculas = new ArbolPeliculas();
+       
+       
     }
 
 }
