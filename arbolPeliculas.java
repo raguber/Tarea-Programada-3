@@ -179,15 +179,31 @@ public class arbolPeliculas
         if(existeCategoria == true)
         {
             ListaPeliculas peliculas = retorneListaPeliculas(hileraExis);
+            agregueHileraNueva(nuevHilera);
+            //editeCategoriaPeliculas(peliculas);
         }
         else
         {
-            System.out.println("Error no existe categoria ingresada");
+            System.out.println("Error no existen pelicualas con la categoria ingresada");
         }
+        
     }
+    public void editeCategoriaPeliculas(Pelicula pelicula,String nuevHil)
+    {
+        // agregueHileraNueva(nuevHil);
+        // while(peliculas.peliculaSiguiente != null)
+        // {
+            
+        // }
+    }
+    public void muestreCategoria()
+    {
+    
+    }
+
     public ListaPeliculas retorneListaPeliculas(String hilera)
     {
-        listaPeliculas = null;
+        ListaPeliculas listaPeli = null;
         String Hilera = hilera;
         System.out.println("Hilera "+Hilera);
         Hilera = Hilera.trim();
@@ -200,7 +216,7 @@ public class arbolPeliculas
         {
             System.out.println("Letra actual menor que la letra a buscar, a la derecha");
 
-            listaPeliculas = letraDerecha.retorneListaPeliculas(Hilera);
+            listaPeli = letraDerecha.retorneListaPeliculas(Hilera);
 
         }
         else
@@ -215,13 +231,13 @@ public class arbolPeliculas
                 {
                     //Se pasa al izquierda y se analiza usando la letra que sigue
                     System.out.println("se encontraron todas las letras, existe Hilera");
-                    //Agregar pelicua
+                    listaPeli = listaPeliculas;
 
                 }
                 else//Se llego a una Hilera exacta
                 {
 
-                    listaPeliculas = letraIzquierda.retorneListaPeliculas(Hilera);
+                    listaPeli = letraIzquierda.retorneListaPeliculas(Hilera);
 
                 }
 
@@ -268,8 +284,14 @@ public class arbolPeliculas
                 {
                     //Se pasa al izquierda y se analiza usando la letra que sigue
                     System.out.println("se encontraron todas las letras, existe Hilera");
-
-                    existe = true;
+                    if(listaPeliculas != null)
+                    {
+                        existe = true;
+                    }
+                    else
+                    {
+                        existe = false;
+                    }
 
                 }
                 else//Se llego a una Hilera exacta
