@@ -54,10 +54,10 @@ public class Lector{
          *  devuelva=accion; Lector 
         ***************************************
             AgreguePeliculaArbol(peli);
-            categogria = peli.deCategoria();
+            categogria = peli.getCategoria();
             while(existanLineas)
             }
-                suvstring(0,",");
+                substring(0,",");
                 categoriaAgregar = categoria[i] ;
                ArbolCategoria.agreguePelicula(categoriaAgregar,Peli);
             }
@@ -84,9 +84,76 @@ public class Lector{
          */
         String line=bure.readLine();
         while(line!=null){
-            Pelicula p = new Pelicula(line);
+            //Crear los atributos de la pelicula:
+            String show_id;
+            String tipo;
+            String titulo;
+            String director;
+            String cast; 
+            String pais;
+            String fecha;
+            String anio;
+            String audiencia;
+            String duracion;
+            String categoria; 
+            String descripcion;
+            
+            //Ir deshilachando la linea:
+            int pos = line.indexOf(";");
+            show_id=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            pos = line.indexOf(";");
+            tipo=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            pos = line.indexOf(";");
+            titulo=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            pos = line.indexOf(";");
+            director=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            pos = line.indexOf(";");
+            cast=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            pos = line.indexOf(";");
+            pais=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            pos = line.indexOf(";");
+            fecha=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            pos = line.indexOf(";");
+            anio=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            pos = line.indexOf(";");
+            audiencia=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            pos = line.indexOf(";");
+            duracion=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            pos = line.indexOf(";");
+            categoria=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            pos = line.indexOf(";");
+            descripcion=line.substring(0,pos);
+            line=line.substring(pos+1,line.length());
+            
+            Pelicula p = new Pelicula(show_id,tipo,titulo,director,cast,pais,fecha,anio,audiencia,duracion,categoria,descripcion);
+            
+            ///////Imprimir las peliculas:
+            p.muestre(); //Imprime TODAS las peliculas con todos sus datos.
             line=bure.readLine();
         }
+        
     }
         
     /**
