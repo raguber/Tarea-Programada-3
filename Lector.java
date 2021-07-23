@@ -19,6 +19,10 @@ public class Lector{
         fire=new FileReader(movies);
         bure=new BufferedReader(fire);
     }
+    /*********************************************************************
+     *                  Administracion de lectura
+     * *******************************************************************
+     */
 
     public void readTest()throws IOException{
         String line=bure.readLine();
@@ -40,30 +44,28 @@ public class Lector{
      */
     public void lea()throws IOException{
         /**
-         * line = "Antonio Banderas;San son; action, drama, comedia, duracion , et;
-         * int posicionPuntoComa = indexOf(";");
-         * Actor = line.substring(0,posicionPuntoComa
-         * line = line-line.Substring(0,posicionPuntoComa);
-         * line San son; action, drama, comedia;
-         * psocionPuntoComa = indexOf(";");
-         * Nombre = line-substring(0,posicion);
-         * line = substring 
-        String ";"
-         *Line action, drama, comedia;
-         *lineaCategoria = substring(0,lineaCategoria.indexOf(";");
-         *while(lineaCategoria.isEmpty != true);
-         *{
-         *  salidaCategoria = lineaCategoria(0,lineaCategoria.indexof(,);
-         *  arbolCategoria.agregue(salidaCategora);
-         *  lineaCategoria = subString(0,lineaCategoria.indexof(",");
-         *  categoria += ","+salidaCategoria;
-         *  drama, comedia
+         //Lector = string;
          *  }
-
-         *  Pelicula peli = new Pelicula(actor,nombre,categoria)
+         *  Devuelva categoria=
          *  
+            ACction, drama, ciencia
+         *  Pelicula peli = new Pelicula(String)
+         *  pelicula mandeCategoria;
+         *  devuelva=accion; Lector 
+        ***************************************
+            AgreguePeliculaArbol(peli);
+            categogria = peli.deCategoria();
+            while(existanLineas)
+            }
+                suvstring(0,",");
+                categoriaAgregar = categoria[i] ;
+               ArbolCategoria.agreguePelicula(categoriaAgregar,Peli);
+            }
+        ******************************************    
         
-        ArbolCategoria.agreguePelicula(Peli);
+        
+        
+        
         while(line!=null){
         //System.out.println(line+" ");
         /**
@@ -94,6 +96,10 @@ public class Lector{
         bure.close();
         fire.close();
     }
+    /*********************************************************************
+     * Administracion de categorias
+     * *******************************************************************
+     */
 
     public static void main(String[]Args)throws IOException{
         Lector test = new Lector();

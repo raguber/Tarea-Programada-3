@@ -30,4 +30,10 @@ public class Controlador
         // put your code here
         return x + y;
     }
+    public static void main(String args[])
+    {
+        ArbolCategoria arb = new ArbolCategoria();
+        
+        Pelicula peli = new Pelicula("asfdasdf");
+    }
 }

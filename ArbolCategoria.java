@@ -6,13 +6,13 @@ public class ArbolCategoria
     int numeroLetra;
     ArbolCategoria letraIzquierda;//Letra izquierda para letras que necesitan previamente valor del nodo (letra);
     ArbolCategoria letraDerecha;//Letra derecha para letras que no necesita previamente el valor del nodo (letra);
-    ListaPel listaPeliculas;
+    Pelicula pelicula;
     ArbolCategoria()
     {
         numeroLetra = 0;//Pruebas
         letraIzquierda = null;
         letraDerecha = null;
-        listaPeliculas = null;
+        pelicula = null;
     }
 
     public void muestreArbol(ArbolCategoria arb)
@@ -28,7 +28,9 @@ public class ArbolCategoria
             System.out.println("der");
             muestreArbol(letraDerecha);
         }
-
+        
+        
+        
     }
 
     public void busqueCategoria(String cat,boolean mostrarCoincidenciaExacta)
@@ -112,7 +114,7 @@ public class ArbolCategoria
 
     }
 
-    public void agreguePelicula(String cat,Peli pelicula)//Una pelicula puede tener categorias distintas, entonces se debe ingresar una cat, y no se puede sacar de la pelicula
+    public void agreguePelicula(String cat,Pelicula pelicula)//Una pelicula puede tener categorias distintas, entonces se debe ingresar una cat, y no se puede sacar de la pelicula
     {
         agregueCategoriaNueva(cat);//No hace falta verificar si ya existe, por de hacerlo se tendria que recorrer el arbol dos veces, uno para ver si existe "x" categoria y la segunda para agregar letras que no existam
         //El codigo va a ser eso en un solo proceso
@@ -136,9 +138,13 @@ public class ArbolCategoria
         String categoria = cat;
         categoria = categoria.trim();
         int tamanoCategoria = categoria.length();
+        
         String letraAgregar = categoria.substring(0,1);
 
         int numLetraAgregar = deNumeroLetra(letraAgregar);
+        
+            System.out.println("cat "+categoria);
+        
         System.out.println("Letra "+letraAgregar+" num "+numLetraAgregar);
 
         if(numeroLetra == 0)
@@ -360,11 +366,11 @@ public class ArbolCategoria
         arbol.agregueCategoriaNueva("Accion");
 
         System.out.println("************************************");
-        System.out.println("action");
-        arbol.agregueCategoriaNueva("Action");
+        System.out.println("Action * 2 & -+}} asd");
+        arbol.agregueCategoriaNueva("Action * 2 & -+}} asd");
         System.out.println("*************Busqueda***********");
         
-        arbol.busqueCategoria("Eas",false);
+        arbol.busqueCategoria("Action s asd",false);
         System.out.println("********************************");
         //arbol.busqueCategoria("Asd",false);
         System.out.println("********************************");

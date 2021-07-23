@@ -27,6 +27,7 @@ public class Pelicula
      */
     public Pelicula(String v)
     {
+       // Pelicula.show_id = show_id_nuevo; 
         int pos = v.indexOf(";");
         show_id=v.substring(0,pos);//ABC;DEF;GHI
         v=v.substring(pos+1,v.length());//DEF;GHI
@@ -74,6 +75,10 @@ public class Pelicula
         pos = v.indexOf(";");
         descripcion=v.substring(0,pos);
         v=v.substring(pos+1,v.length());
+        
+        /**
+         * agreguePelicula(categoria,pelicual):
+         */
         // String l[]=v.split(";");
         // show_id=l[0];
         // tipo=l[1];
