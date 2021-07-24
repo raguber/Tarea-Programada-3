@@ -11,6 +11,10 @@ public class Controlador{
     FileReader fire;
     BufferedReader bure;
 
+    ArbolPeliculas arbolCategorias;
+    ArbolPeliculas arbolActores;
+    ArbolPeliculas arbolTipo;
+    ArbolPeliculas arbolPais;
     /**
     Constructor. Crea los objetos File necesarios para leer las líneas del documento que contiene las películas.
      */
@@ -18,6 +22,14 @@ public class Controlador{
         movies=new File("netflix_titles_dep.csv");
         fire=new FileReader(movies);
         bure=new BufferedReader(fire);
+        arbolCategorias=new ArbolPeliculas();
+        arbolCategorias.agregueHileraNueva("a");
+	arbolActores=new ArbolPeliculas();
+	arbolActores.agregueHileraNueva("a");
+	arbolTipo=new ArbolPeliculas();
+	arbolTipo.agregueHileraNueva("a");
+	arbolPais=new ArbolPeliculas();
+	arbolPais.agregueHileraNueva("a");
     }
 
     /*********************************************************************
@@ -146,7 +158,7 @@ public class Controlador{
             line=line.substring(pos+1,line.length());
 
             Pelicula p = new Pelicula(show_id,tipo,titulo,director,cast,pais,fecha,anio,audiencia,duracion,categoria,descripcion);
-
+            agreguePeliculaArboles(p);
             
             ///////Imprimir las peliculas:
             p.muestre(); //Imprime TODAS las peliculas con todos sus datos.
@@ -157,7 +169,35 @@ public class Controlador{
 
     public void agreguePeliculaArboles(Pelicula p)
     {
-      
+                    //agregar categorías, actores, tipo, pais de procedencia
+        String texto,sub;
+        boolean siga=true;
+        texto=p.getCategoria();
+        int pos;
+        while(siga){
+            try{
+                pos=texto.indexOf(",");
+                sub=texto.substring(0,pos);
+                texto=texto.substring(pos+1,texto.length());
+                arbolCategorias.agreguePelicula(sub,p);
+            }catch(StringIndexOutOfBoundsException e){
+                siga=false;
+            }
+        }
+        siga=true;
+        texto=p.getCast();
+        while(siga){
+            try{
+                pos=texto.indexOf(",");
+                sub=texto.substring(0,pos);
+                texto=texto.substring(pos+1,texto.length());
+                arbolActores.agreguePelicula(sub,p);
+            }catch(StringIndexOutOfBoundsException e){
+                siga=false;
+            }
+        }
+        arbolTipo.agreguePelicula(p.getTipo(),p);
+        arbolPais.agreguePelicula(p.getPais(),p);
       
         
     }

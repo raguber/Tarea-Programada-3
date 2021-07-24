@@ -1,10 +1,21 @@
 #BlueJ class context
 comment0.target=Controlador
-comment0.text=\n\ Write\ a\ description\ of\ class\ Controlar\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\r\nClase\ encargada\ de\ leer\ todas\ las\ pel\u00EDculas\ e\ instanciarlas\ en\ objetos\ Pelicula\r\n
 comment1.params=
 comment1.target=Controlador()
-comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Controlar\n
-comment2.params=y
-comment2.target=int\ sampleMethod(int)
-comment2.text=\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\n\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\n
-numComments=3
+comment1.text=\r\n\ \ \ \ Constructor.\ Crea\ los\ objetos\ File\ necesarios\ para\ leer\ las\ l\u00EDneas\ del\ documento\ que\ contiene\ las\ pel\u00EDculas.\r\n
+comment2.params=
+comment2.target=void\ readTest()
+comment2.text=\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Administracion\ de\ lectura\r\n\ *******************************************************************\r\n
+comment3.params=
+comment3.target=void\ lea()
+comment3.text=\r\n\ \ \ \ Lee\ e\ instancia\ todas\ las\ l\u00EDneas\ del\ documento.\ Con\ cada\ l\u00EDnea\ le\u00EDda\ crea\ un\ objeto\ pel\u00EDcula\r\n
+comment4.params=p
+comment4.target=void\ agreguePeliculaArboles(Pelicula)
+comment5.params=
+comment5.target=void\ cierre()
+comment5.text=\r\n\ \ \ \ Cierra\ el\ FileReader\ y\ el\ BufferedReader\r\n
+comment6.params=Args
+comment6.target=void\ main(java.lang.String[])
+comment6.text=\r\n\ Administracion\ de\ categorias\r\n\ *******************************************************************\r\n
+numComments=7

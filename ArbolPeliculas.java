@@ -398,6 +398,9 @@ public class ArbolPeliculas
                         if(letraDerecha.numeroLetra==numLetraAgregar)
                         {
                             letraDerecha.agregueHileraNueva(Hilera);
+                        }else
+                        {
+                            letraDerecha.agregueHileraNueva(Hilera);
                         }
                     }
                 }
