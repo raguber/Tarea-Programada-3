@@ -2,7 +2,7 @@
 public class ListaPeliculas
 {
     // instance variables - replace the example below with your own
-    String nombreFiltrado;//
+    String nombreFiltrado;
     Pelicula pelicula;
     ListaPeliculas peliculaDerecha;
     /**
@@ -24,7 +24,6 @@ public class ListaPeliculas
         {
             peliculaDerecha.muestre();
         }
-        
     }
 
     public void agregue(Pelicula peli)
