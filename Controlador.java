@@ -11,9 +11,11 @@ public class Controlador{
     FileReader fire;
     BufferedReader bure;
 
-    ArbolPeliculas arbolCategorias;
+ ArbolPeliculas arbolCategorias;
     ArbolPeliculas arbolActores;
     ArbolPeliculas arbolTipo;
+
+
     ArbolPeliculas arbolPais;
     /**
     Constructor. Crea los objetos File necesarios para leer las líneas del documento que contiene las películas.
@@ -24,12 +26,18 @@ public class Controlador{
         bure=new BufferedReader(fire);
         arbolCategorias=new ArbolPeliculas();
         arbolCategorias.agregueHileraNueva("a");
-	arbolActores=new ArbolPeliculas();
-	arbolActores.agregueHileraNueva("a");
-	arbolTipo=new ArbolPeliculas();
-	arbolTipo.agregueHileraNueva("a");
-	arbolPais=new ArbolPeliculas();
-	arbolPais.agregueHileraNueva("a");
+
+
+
+        arbolActores=new ArbolPeliculas();
+        arbolActores.agregueHileraNueva("a");
+        arbolTipo=new ArbolPeliculas();
+        arbolTipo.agregueHileraNueva("a");
+        arbolPais=new ArbolPeliculas();
+        arbolPais.agregueHileraNueva("a");
+
+
+
     }
 
     /*********************************************************************
@@ -56,44 +64,9 @@ public class Controlador{
     Lee e instancia todas las líneas del documento. Con cada línea leída crea un objeto película
      */
     public void lea()throws IOException{
-        /**
-        //Lector = string;
-         *  }
-         *  Devuelva categoria=
-         *  
-        ACction, drama, ciencia
-         *  Pelicula peli = new Pelicula(String)
-         *  pelicula mandeCategoria;
-         *  devuelva=accion; Lector 
-         ***************************************
-        AgreguePeliculaArbol(peli);
-        categogria = peli.getCategoria();
-        while(existanLineas)
-        }
-        substring(0,",");
-        categoriaAgregar = categoria[i] ;
-        ArbolCategoria.agreguePelicula(categoriaAgregar,Peli);
-        }
-         ******************************************    
 
-        while(line!=null){
-        //System.out.println(line+" ");
-        /**
-         * ID line.splig(";");
-         * String categoria ="";
-         * while(line.split("j");
-         * {
-         *    intUltimo = categoria.indexof(";");
-         *    salida = substring(
-         *    
-         *   arbolCategoria.agregue(salidaSplit))
-         * categoria += salidaSplita;
-         * SalidaSplit = line.split
-         *   }
-         * 
-         */
         String line=bure.readLine();
-        while(line!=null){
+        for(int i=0;i<2;i++){
             //Crear los atributos de la pelicula:
             String show_id;
             String tipo;
@@ -151,6 +124,7 @@ public class Controlador{
 
             pos = line.indexOf(";");
             categoria=line.substring(0,pos);
+            arbolCategorias.agregueHilera(categoria);
             line=line.substring(pos+1,line.length());
 
             pos = line.indexOf(";");
@@ -158,17 +132,33 @@ public class Controlador{
             line=line.substring(pos+1,line.length());
 
             Pelicula p = new Pelicula(show_id,tipo,titulo,director,cast,pais,fecha,anio,audiencia,duracion,categoria,descripcion);
+
             agreguePeliculaArboles(p);
             
+
             ///////Imprimir las peliculas:
-            p.muestre(); //Imprime TODAS las peliculas con todos sus datos.
+
+           
+            p.muestre();
+           agreguePeliculaArboles(p);
             line=bure.readLine();
         }
+
+        System.out.println("*********");
 
     }
 
     public void agreguePeliculaArboles(Pelicula p)
     {
+
+        p.muestre();
+        System.out.println("ASD VsaSDASdSADDAdA");
+        arbolTipo.agregueHilera(p.getCategoria());
+        arbolTipo.agreguePelicula(p.getCategoria(),p);
+        System.out.println("SADsadddddddd");
+
+
+
                     //agregar categorías, actores, tipo, pais de procedencia
         String texto,sub;
         boolean siga=true;
@@ -199,7 +189,7 @@ public class Controlador{
         arbolTipo.agreguePelicula(p.getTipo(),p);
         arbolPais.agreguePelicula(p.getPais(),p);
       
-        
+
     }
 
     /**

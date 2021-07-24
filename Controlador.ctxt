@@ -1,8 +1,32 @@
 #BlueJ class context
 comment0.target=Controlador
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+comment0.text=\nClase\ encargada\ de\ leer\ todas\ las\ pel\u00EDculas\ e\ instanciarlas\ en\ objetos\ Pelicula\n
+comment1.params=
+comment1.target=Controlador()
+comment1.text=\n\ \ \ \ Constructor.\ Crea\ los\ objetos\ File\ necesarios\ para\ leer\ las\ l\u00EDneas\ del\ documento\ que\ contiene\ las\ pel\u00EDculas.\n
+comment2.params=
+comment2.target=void\ readTest()
+comment2.text=\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Administracion\ de\ lectura\n\ *******************************************************************\n
+comment3.params=
+comment3.target=void\ lea()
+comment3.text=\n\ \ \ \ Lee\ e\ instancia\ todas\ las\ l\u00EDneas\ del\ documento.\ Con\ cada\ l\u00EDnea\ le\u00EDda\ crea\ un\ objeto\ pel\u00EDcula\n
+=======
 comment0.text=\r\nClase\ encargada\ de\ leer\ todas\ las\ pel\u00EDculas\ e\ instanciarlas\ en\ objetos\ Pelicula\r\n
 comment1.params=
 comment1.target=Controlador()
+=======
+comment0.text=\r\nClase\ encargada\ de\ leer\ todas\ las\ pel\u00EDculas\ e\ instanciarlas\ en\ objetos\ Pelicula\r\n
+comment1.params=
+comment1.target=Controlador()
+>>>>>>> 5fcdede4a2ab90e11aae7777a4e36a28ccb6144a
+=======
+comment0.text=\r\nClase\ encargada\ de\ leer\ todas\ las\ pel\u00EDculas\ e\ instanciarlas\ en\ objetos\ Pelicula\r\n
+comment1.params=
+comment1.target=Controlador()
+>>>>>>> 5fcdede4a2ab90e11aae7777a4e36a28ccb6144a
 comment1.text=\r\n\ \ \ \ Constructor.\ Crea\ los\ objetos\ File\ necesarios\ para\ leer\ las\ l\u00EDneas\ del\ documento\ que\ contiene\ las\ pel\u00EDculas.\r\n
 comment2.params=
 comment2.target=void\ readTest()
@@ -10,12 +34,38 @@ comment2.text=\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Administracion\ de\ lectur
 comment3.params=
 comment3.target=void\ lea()
 comment3.text=\r\n\ \ \ \ Lee\ e\ instancia\ todas\ las\ l\u00EDneas\ del\ documento.\ Con\ cada\ l\u00EDnea\ le\u00EDda\ crea\ un\ objeto\ pel\u00EDcula\r\n
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 5fcdede4a2ab90e11aae7777a4e36a28ccb6144a
+=======
+>>>>>>> 5fcdede4a2ab90e11aae7777a4e36a28ccb6144a
+=======
+>>>>>>> 5fcdede4a2ab90e11aae7777a4e36a28ccb6144a
 comment4.params=p
 comment4.target=void\ agreguePeliculaArboles(Pelicula)
 comment5.params=
 comment5.target=void\ cierre()
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+comment5.text=\n\ \ \ \ Cierra\ el\ FileReader\ y\ el\ BufferedReader\n
+comment6.params=Args
+comment6.target=void\ main(java.lang.String[])
+comment6.text=\n\ Administracion\ de\ categorias\n\ *******************************************************************\n
+=======
+=======
+>>>>>>> 5fcdede4a2ab90e11aae7777a4e36a28ccb6144a
+=======
+>>>>>>> 5fcdede4a2ab90e11aae7777a4e36a28ccb6144a
 comment5.text=\r\n\ \ \ \ Cierra\ el\ FileReader\ y\ el\ BufferedReader\r\n
 comment6.params=Args
 comment6.target=void\ main(java.lang.String[])
 comment6.text=\r\n\ Administracion\ de\ categorias\r\n\ *******************************************************************\r\n
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 5fcdede4a2ab90e11aae7777a4e36a28ccb6144a
+=======
+>>>>>>> 5fcdede4a2ab90e11aae7777a4e36a28ccb6144a
+=======
+>>>>>>> 5fcdede4a2ab90e11aae7777a4e36a28ccb6144a
 numComments=7
