@@ -1,24 +1,31 @@
 
-
 public class ListaPeliculas
 {
     // instance variables - replace the example below with your own
     String nombreFiltrado;
     Pelicula pelicula;
+    ListaPeliculas peliculaDerecha;
     /**
      * Constructor for objects of class ListaPeliculas
      */
-    public ListaPeliculas()
+    public ListaPeliculas(String nombreFiltrado)
     {
         // initialise instance variables
-        nombreFiltrado = "";
-        
+        nombreFiltrado = nombreFiltrado;
+
         pelicula = null;
+        peliculaDerecha = null;
     }
+
     public void muestre()
     {
         pelicula.muestre();
+        if(peliculaDerecha != null)
+        {
+            peliculaDerecha.muestre();
+        }
     }
+
     public void agregue(Pelicula peli)
     {
         if(pelicula == null)
@@ -27,9 +34,13 @@ public class ListaPeliculas
         }
         else
         {
-            pelicula.agregue(peli);
+            if(peliculaDerecha == null)
+            {
+                peliculaDerecha =  new ListaPeliculas(nombreFiltrado);
+                
+            }
+            peliculaDerecha.agregue(peli);
         }
     }
 
-    
 }

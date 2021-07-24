@@ -158,7 +158,11 @@ public class ArbolPeliculas
                 {
                     //Se pasa al izquierda y se analiza usando la letra que sigue
                     System.out.println("se encontraron todas las letras, existe Hilera");
-                    //Agregar pelicua
+                    if(listaPeliculas == null)
+                    {
+                        listaPeliculas = new ListaPeliculas(hileraExacta);
+                    }
+                    listaPeliculas.agregue(pelicula);
 
                 }
                 else//Se llego a una Hilera exacta
