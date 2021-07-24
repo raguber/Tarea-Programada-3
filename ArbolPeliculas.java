@@ -107,10 +107,10 @@ public class ArbolPeliculas
         }
     }
 
-    public void agreguePelicula(ArbolPeliculas arbol, String texto,Pelicula pelicula)//Una pelicula puede tener hilera distintas, entonces se debe ingresar una cat, y no se puede sacar de la pelicula
+    public ArbolPeliculas agreguePelicula(ArbolPeliculas arbol, String texto,Pelicula pelicula)//Una pelicula puede tener hilera distintas, entonces se debe ingresar una cat, y no se puede sacar de la pelicula
     {
         System.out.println("Te 2 sd"+texto);
-
+        ArbolPeliculas arbolAGuardar = arbol;
         int pos=0;
         String sub = "";
         String p = "";
@@ -120,8 +120,9 @@ public class ArbolPeliculas
                 System.out.println("sz");
                 pos=texto.indexOf(",");
                 sub=texto.substring(1);
+                
                 System.out.println(sub);
-                agreguePeliculaLista(arbol,sub,pelicula,sub);
+                arbolAGuardar = agreguePeliculaLista(arbol,sub,pelicula,sub);
                 System.out.println("prueba sda "+sub);
 
                 texto=texto.substring(pos+1,texto.length());
@@ -132,11 +133,14 @@ public class ArbolPeliculas
                 siga=false;
             }
         }
+        
+        return arbolAGuardar;
 
     }
 
-    public void agreguePeliculaLista(ArbolPeliculas arbol,String hil,Pelicula pelicula,String hileraExacta)
+    public ArbolPeliculas agreguePeliculaLista(ArbolPeliculas arbol,String hil,Pelicula pelicula,String hileraExacta)
     {
+        ArbolPeliculas arbolRetorno = null;
         System.out.println("Esxdfsj");
         pelicula.muestre();
 
@@ -168,10 +172,10 @@ public class ArbolPeliculas
                     if(listaPeliculas == null)
                     {
                         arbol.listaPeliculas = new ListaPeliculas(hileraExacta);
-                        System.out.println("asks");
+                        
                     }
                     arbol.listaPeliculas.agregue(pelicula);
-                    System.out.println("asks");
+                    arbolRetorno = arbol;
                 }
                 else//Se llego a una Hilera exacta
                 {
@@ -183,6 +187,7 @@ public class ArbolPeliculas
             }
 
         }
+        return arbolRetorno;
     }
 
     public void editeCategoria(ArbolPeliculas arbol,String hileraExis, String nuevHilera)
@@ -268,16 +273,18 @@ public class ArbolPeliculas
         String letraAnalizar = Hilera.substring(0,1);
 
         int numLetraAnalizar = deNumeroLetra(letraAnalizar);
-        System.out.println("LEtra 1 "+arbol.numeroLetra);
+        System.out.println("LEtra 1 "+arbol.numeroLetra+" "+numLetraAnalizar);
         if(numLetraAnalizar>arbol.numeroLetra)//Ej: se ingresa b(2); y si se esta en a(1) entonces se verifica que exista alguien mayor que a y se manda b al siguiete
         {
             System.out.println("SFA");
+             System.out.println("LEtra 1 "+arbol.numeroLetra+" "+numLetraAnalizar);
             if(arbol.letraDerecha != null)
             {
                 existe = arbol.determineSiExisteHilera(arbol.letraDerecha,Hilera);
             }
             else
             {
+                System.out.println("NO hay mas");
                 existe = false;//En este caso se encuentra con un numero mayor entonces si se tiene b y se busca a, se sabe que a no existe
 
             }
@@ -328,17 +335,19 @@ public class ArbolPeliculas
     public void agregueHilera(ArbolPeliculas arbol,String texto)
     {
         System.out.println("Te "+texto);
-
+                System.out.println("Te "+texto);
         int pos=0;
         String sub = "";
         String p = "";
         boolean siga = true;
         while(siga){
             try{
+                texto.trim();
                 pos=texto.indexOf(",");
                 sub=texto.substring(0,pos);
                 texto=texto.substring(pos+1,texto.length());
-                System.out.println("prueba 2");
+               
+                System.out.println("prueba 2"+sub+" "+texto);
                 agregueHileraNueva(arbol,sub);
             }catch(StringIndexOutOfBoundsException e){
                 siga=false;
