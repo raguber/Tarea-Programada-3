@@ -48,9 +48,7 @@ public class ArbolPeliculas
         String letraAnalizar = Hilera.substring(0,1);
 
         int numLetraAnalizar = deNumeroLetra(letraAnalizar);
-        System.out.println("letra "+letraAnalizar+" "+numLetraAnalizar);
 
-        System.out.println ("num letra nodo actual"+numeroLetra);
         if(numLetraAnalizar>numeroLetra)//Ej: se ingresa b(2); y si se esta en a(1) entonces se verifica que exista alguien mayor que a y se manda b al siguiete
         {
             System.out.println("Letra actual menor que la letra a buscar, a la derecha");
@@ -132,32 +130,29 @@ public class ArbolPeliculas
     {
 
         String Hilera = hil;
-        System.out.println("Hilera "+Hilera);
+
         Hilera = Hilera.trim();
         String letraAnalizar = Hilera.substring(0,1);
 
         int numLetraAnalizar = deNumeroLetra(letraAnalizar);
-        System.out.println("letra "+letraAnalizar+" "+numLetraAnalizar);
 
         if(numLetraAnalizar>numeroLetra)//Ej: se ingresa b(2); y si se esta en a(1) entonces se verifica que exista alguien mayor que a y se manda b al siguiete
         {
-            System.out.println("Letra actual menor que la letra a buscar, a la derecha");
 
             letraDerecha.agreguePeliculaLista(Hilera,pelicula,hileraExacta);
-
         }
         else
         {
             if(numLetraAnalizar==numeroLetra)//Ej: se ingresa ba(2)(1) y se esta en b(2); entonces si hay mas letras se va a la izquierda y empieza a buscar desde a(1)
             //En otro caso se encontro una coincidencia y se mostrarian las peliculas iguales a Hilera ba o con ba inicialmente
             {
-                System.out.println("letra igual, se debe ir a la izquierda");
+
                 Hilera = Hilera.substring(1);
-                System.out.println(Hilera+" Hilera nueva");
+
                 if(Hilera.isEmpty() == true)//Caso de existir mas letras a analizar
                 {
                     //Se pasa al izquierda y se analiza usando la letra que sigue
-                    System.out.println("se encontraron todas las letras, existe Hilera");
+
                     if(listaPeliculas == null)
                     {
                         listaPeliculas = new ListaPeliculas(hileraExacta);
@@ -184,26 +179,28 @@ public class ArbolPeliculas
         {
             ListaPeliculas peliculas = retorneListaPeliculas(hileraExis);
             agregueHileraNueva(nuevHilera);
-            
+
             //editeCategoriaPeliculas(peliculas);
         }
         else
         {
             System.out.println("Error no existen pelicualas con la categoria ingresada");
         }
-        
+
     }
+
     public void editeCategoriaPeliculas(Pelicula pelicula,String nuevHil)
     {
         // agregueHileraNueva(nuevHil);
         // while(peliculas.peliculaSiguiente != null)
         // {
-            
+
         // }
     }
+
     public void muestreCategoria()
     {
-    
+
     }
 
     public ListaPeliculas retorneListaPeliculas(String hilera)
@@ -338,23 +335,15 @@ public class ArbolPeliculas
 
         int numLetraAgregar = deNumeroLetra(letraAgregar);
 
-        System.out.println("cat "+Hilera);
-
-        System.out.println("Letra "+letraAgregar+" num "+numLetraAgregar);
-
         if(numeroLetra == 0)
         {
-            System.out.println("Letra no existe");
 
             numeroLetra = numLetraAgregar;
-
             Hilera = Hilera.substring(1);
-
             //Se mete a la izquierda
             if(Hilera.isEmpty()==true)
             {
-                System.out.println("No hay mas");
-                //AgreguePeliculaAqui, else
+
             }
             else
             {
@@ -462,7 +451,7 @@ public class ArbolPeliculas
 
     public int deNumeroLetra(String L)
     {
-        int valorLetra = 0;
+        int valorLetra = 30;
         L = L.toLowerCase();
         switch (L)
         {
@@ -554,9 +543,8 @@ public class ArbolPeliculas
 
     public static void main (String args[])
     {
-       ArbolPeliculas peliculas = new ArbolPeliculas();
        
+        
        
     }
-
 }
