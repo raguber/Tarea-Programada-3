@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
 Clase encargada de leer todas las películas e instanciarlas en objetos Pelicula
@@ -10,13 +11,12 @@ public class Controlador{
     File movies;
     FileReader fire;
     BufferedReader bure;
-
- ArbolPeliculas arbolCategorias;
+    ArbolPeliculas arbolCategorias;
     ArbolPeliculas arbolActores;
     ArbolPeliculas arbolTipo;
-
-
     ArbolPeliculas arbolPais;
+    Scanner scan;
+    EntradaDatos entrada;
     /**
     Constructor. Crea los objetos File necesarios para leer las líneas del documento que contiene las películas.
      */
@@ -37,7 +37,8 @@ public class Controlador{
         arbolPais.agregueHileraNueva("a");
 
 
-
+        scan = new Scanner(System.in);
+        entrada = new EntradaDatos();
     }
 
     /*********************************************************************
@@ -80,7 +81,7 @@ public class Controlador{
             String duracion;
             String categoria; 
             String descripcion;
-
+            
             //Ir deshilachando la linea:
             int pos = line.indexOf(";");
             show_id=line.substring(0,pos);
@@ -199,7 +200,52 @@ public class Controlador{
         bure.close();
         fire.close();
     }
-
+    
+    public void menu(){
+        //opciones: Cuáles películas pertenecen a una categoría específica//imprimir la lista de x categoría
+        //en cuales videos ha actuado una persona//imprimir la lista actores
+        //devolver la lista completa
+        //editar categoría
+        boolean termine=false;
+        String opciones="¿Qué desea hacer?\n1. Buscar una categoría\n2.Buscar un actor/actriz\n3.Editar una categoría\n4. Salir";
+        while(termine!=true){
+            //System.out.println(opciones);
+            int decision=entrada.pidaNumeroRango(opciones,4,1);
+            
+            switch(decision){
+                case 1:
+                String input=entrada.pidaTexto("Escogió el 1. Inserte la categoría que quiere buscar");
+                if(arbolCategorias.determineSiExisteHilera(input)){
+                    ListaPeliculas x = arbolCategorias.retorneListaPeliculas(input);
+                    x.muestre();
+                }else{
+                    System.out.println("La categoría insertada no existe");
+                }
+                break;
+                case 2:
+                String input2=entrada.pidaTexto("Escogió el 2. Inserte la persona que quiere buscar");
+                if(arbolActores.determineSiExisteHilera(input2)){
+                    ListaPeliculas x = arbolActores.retorneListaPeliculas(input2);
+                    x.muestre();
+                }else{
+                    System.out.println("El/la actor/actriz insertado/a no existe");
+                }
+                break;
+                case 3:
+                String catEscogida=entrada.pidaTexto("Escogió el 3. Escoja alguna de las categorías");
+                if(arbolCategorias.determineSiExisteHilera(catEscogida)){
+                    String nuevoNombre = entrada.pidaTexto("La categoría existe, inserte el nombre de la nueva categoría");
+                    arbolCategorias.editeCategoria(catEscogida,nuevoNombre);
+                }
+                break;
+                case 4:
+                termine=true;
+                break;
+            }
+        }
+        
+    }
+    
     /*********************************************************************
      * Administracion de categorias
      * *******************************************************************
@@ -207,8 +253,8 @@ public class Controlador{
 
     public static void main(String[]Args)throws IOException{
         Controlador test = new Controlador();
-        //test.readTest();
         test.lea();
+        test.menu();
         test.cierre();
     }
 }

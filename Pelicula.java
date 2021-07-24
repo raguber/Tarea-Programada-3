@@ -218,6 +218,10 @@ public class Pelicula
     }
     public void agregue(Pelicula peli)
     {
-    
+        if(next==null){
+            next=peli;
+        }else{
+            next.agregue(peli);
+        }
     }
 }

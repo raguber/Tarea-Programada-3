@@ -197,7 +197,7 @@ public class ArbolPeliculas
             ListaPeliculas peliculas = retorneListaPeliculas(hileraExis);
             agregueHileraNueva(nuevHilera);
 
-            //editeCategoriaPeliculas(peliculas);
+            editeCategoriaPeliculas(peliculas,nuevHilera);
         }
         else
         {
@@ -206,13 +206,13 @@ public class ArbolPeliculas
 
     }
 
-    public void editeCategoriaPeliculas(Pelicula pelicula,String nuevHil)
+    public void editeCategoriaPeliculas(ListaPeliculas pelicula,String nuevHil)
     {
-        // agregueHileraNueva(nuevHil);
-        // while(peliculas.peliculaSiguiente != null)
-        // {
-
-        // }
+        agregueHileraNueva(nuevHil);
+        while(pelicula.pelicula.next != null)
+        {
+            pelicula.pelicula.setCategoria(nuevHil);
+        }
     }
 
     public void muestreCategoria()
