@@ -44,7 +44,7 @@ public class ListaPeliculas
             if(peliculaDerecha == null)
             {
                 peliculaDerecha =  new ListaPeliculas(nombreFiltrado);
-                System.out.println("edecaha"+nombreFiltrado);
+     
                 peliculaDerecha.agregue(peli);
             }
             else

@@ -39,7 +39,7 @@ public class Pelicula
        audiencia=laAudiencia;
        duracion=laDuracion;
        categoria=lasCategorias;
-       System.out.println("cat "+categoria);
+       
        descripcion=laDescripcion;
         
         ///////////////////////////////////////////////////////////////////////////
@@ -201,7 +201,7 @@ public class Pelicula
         catProcesada = catProcesada.trim();
         catProcesada = catProcesada.replaceAll(", ",",");
         catProcesada = catProcesada.trim();
-        System.out.println("categoria "+categoria+" cat "+catProcesada);
+   
         
         return catProcesada;
     }

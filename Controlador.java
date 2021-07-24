@@ -66,7 +66,7 @@ public class Controlador{
     public void lea()throws IOException{
 
         String line=bure.readLine();
-        for(int i=0;i<80;i++){
+        for(int i=0;i<200;i++){
             //Crear los atributos de la pelicula:
             String show_id;
             String tipo;
@@ -123,12 +123,9 @@ public class Controlador{
             line=line.substring(pos+1,line.length());
 
             pos = line.indexOf(";");
-            System.out.println("pos "+line.substring(0,pos));
             categoria=line.substring(0,pos);
-
-
             line=line.substring(pos+1,line.length());
-
+            
             pos = line.indexOf(";");
             descripcion=line.substring(0,pos);
             line=line.substring(pos+1,line.length());
@@ -142,26 +139,21 @@ public class Controlador{
             line=bure.readLine();
         }
 
-
     }
-
     public void agreguePeliculaArboles(Pelicula p)
     {
 
         arbolCategorias.agregueHilera(arbolCategorias,p.getCategoria());
         arbolActores.agregueHilera(arbolActores,p.getCast());
         arbolPais.agregueHilera(arbolPais,p.getPais());
-       arbolClasificacion.agregueHilera(arbolClasificacion,p.getTipo());
-        
-        
+        arbolClasificacion.agregueHilera(arbolClasificacion,p.getTipo());
+
         arbolCategorias = arbolCategorias.agreguePelicula(arbolCategorias,p.getCategoria(),p);
         arbolActores = arbolActores.agreguePelicula(arbolActores,p.getCast(),p);
         arbolPais = arbolPais.agreguePelicula(arbolPais,p.getPais(),p);
         arbolClasificacion = arbolClasificacion.agreguePelicula(arbolClasificacion,p.getTipo(),p);
-        
-        
-    }
 
+    }
     /**
     Cierra el FileReader y el BufferedReader
      */
@@ -201,21 +193,25 @@ public class Controlador{
                 }
                 break;
                 case 3:
-                String catEscogida=entrada.pidaTexto("Escogió el 3. Escoja alguna de las categorías");
-                //boolean existe =  arbolCategorias.determineSiExisteHilera(arbolCategorias,catEscogida);
                 arbolCategorias.muestreFiltradoArbol(arbolCategorias);
+                String catEscogida=entrada.pidaTexto("Escogió el 3. Escriba  alguna de las categorías");
+                boolean existe =  arbolCategorias.determineSiExisteHilera(arbolCategorias,catEscogida);
 
-                // if((arbolCategorias.determineSiExisteHilera(arbolCategorias,catEscogida)==true)){
-                // String nuevoNombre = entrada.pidaTexto("La categoría existe, inserte el nombre de la nueva categoría");
-                // arbolCategorias.editeCategoria(arbolCategorias,catEscogida,nuevoNombre);
-                // }
+                if((arbolCategorias.determineSiExisteHilera(arbolCategorias,catEscogida)==true)){
+                    String nuevoNombre = entrada.pidaTexto("La categoría existe, inserte el nombre de la nueva categoría");
+                    arbolCategorias.editeCategoria(arbolCategorias,catEscogida,nuevoNombre);
+                }
+                else
+                {
+                    System.out.println("Error no existe categoria");
+                }
                 break;
                 case 4:
                 termine=true;
                 break;
             }
         }
-
+        //
     }
 
     /*********************************************************************
@@ -225,7 +221,8 @@ public class Controlador{
 
     public static void main(String[]Args)throws IOException{
         Controlador test = new Controlador();
-        test.lea();
+        test.lea();     
+        System.out.println("Peliculas ya ha sido cargadas");
         test.menu();
         test.cierre();
     }
