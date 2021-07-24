@@ -64,7 +64,6 @@ public class Controlador{
         }
          ******************************************    
 
-        
         while(line!=null){
         //System.out.println(line+" ");
         /**
@@ -148,11 +147,19 @@ public class Controlador{
 
             Pelicula p = new Pelicula(show_id,tipo,titulo,director,cast,pais,fecha,anio,audiencia,duracion,categoria,descripcion);
 
+            
             ///////Imprimir las peliculas:
             p.muestre(); //Imprime TODAS las peliculas con todos sus datos.
             line=bure.readLine();
         }
 
+    }
+
+    public void agreguePeliculaArboles(Pelicula p)
+    {
+      
+      
+        
     }
 
     /**

@@ -8,14 +8,14 @@
  * @version 20/7/2021
  *
  */
-public class ArbolPeliculas
+public class CopyOfArbolPeliculas
 {
     int numeroLetra;
-    ArbolPeliculas letraIzquierda;//Letra izquierda para letras que necesitan previamente valor del nodo (letra);
-    ArbolPeliculas letraDerecha;//Letra derecha para letras que no necesita previamente el valor del nodo (letra);
+    CopyOfArbolPeliculas letraIzquierda;//Letra izquierda para letras que necesitan previamente valor del nodo (letra);
+    CopyOfArbolPeliculas letraDerecha;//Letra derecha para letras que no necesita previamente el valor del nodo (letra);
     Pelicula pelicula;
     ListaPeliculas listaPeliculas;
-    ArbolPeliculas()
+    CopyOfArbolPeliculas()
     {
         numeroLetra = 0;//Pruebas
         letraIzquierda = null;
@@ -24,7 +24,7 @@ public class ArbolPeliculas
         listaPeliculas = null;
     }
 
-    public void muestreArbol(ArbolPeliculas arb)
+    public void muestreArbol(CopyOfArbolPeliculas arb)
     {
         System.out.println("Arb "+numeroLetra);
         if(letraIzquierda != null)
@@ -357,7 +357,7 @@ public class ArbolPeliculas
                 if(letraIzquierda == null)
                 {
                     System.out.println("A la izquierda");
-                    letraIzquierda = new ArbolPeliculas();
+                    letraIzquierda = new CopyOfArbolPeliculas();
                     letraIzquierda.agregueHileraNueva(Hilera);
 
                 }
@@ -385,7 +385,7 @@ public class ArbolPeliculas
                 if(letraDerecha == null)
                 {
                     System.out.println("Letra derecha null");
-                    letraDerecha = new ArbolPeliculas();
+                    letraDerecha = new CopyOfArbolPeliculas();
                     letraDerecha.agregueHileraNueva(Hilera);
                 }
                 else
@@ -394,8 +394,8 @@ public class ArbolPeliculas
                     if(letraDerecha.numeroLetra>numLetraAgregar)
                     {
                         System.out.println("Existe Letra derecha pero mayor que letra agregar "+numLetraAgregar+" "+letraIzquierda.numeroLetra);
-                        ArbolPeliculas letraDerechaTemp = letraDerecha;
-                        ArbolPeliculas  nuevaLetraDerechaTemp = new ArbolPeliculas();
+                        CopyOfArbolPeliculas letraDerechaTemp = letraDerecha;
+                        CopyOfArbolPeliculas  nuevaLetraDerechaTemp = new CopyOfArbolPeliculas();
                         letraDerecha = nuevaLetraDerechaTemp;
                         letraDerecha.letraDerecha = letraDerechaTemp;
                         letraDerecha.agregueHileraNueva(Hilera);
@@ -425,7 +425,7 @@ public class ArbolPeliculas
                     if(letraIzquierda == null)
                     {
                         System.out.println("Letra no existe");
-                        letraIzquierda = new ArbolPeliculas();
+                        letraIzquierda = new CopyOfArbolPeliculas();
                         letraIzquierda.agregueHileraNueva(Hilera);
                     }
                     else
@@ -434,8 +434,8 @@ public class ArbolPeliculas
                         if(letraIzquierda.numeroLetra>numLetraAgregar)
                         {
                             System.out.println("Existe Letra izq pero mayor que letra agregar "+numLetraAgregar+" "+letraIzquierda.numeroLetra+" se mete letra en medio");
-                            ArbolPeliculas letraIzquierdaTemp = letraIzquierda;
-                            ArbolPeliculas nuevaLetraIzquierda = new ArbolPeliculas();
+                            CopyOfArbolPeliculas letraIzquierdaTemp = letraIzquierda;
+                            CopyOfArbolPeliculas nuevaLetraIzquierda = new CopyOfArbolPeliculas();
                             letraIzquierda = nuevaLetraIzquierda;
 
                             letraIzquierda.letraDerecha = letraIzquierdaTemp;
@@ -550,7 +550,7 @@ public class ArbolPeliculas
 
     public static void main (String args[])
     {
-       ArbolPeliculas peliculas = new ArbolPeliculas();
+       CopyOfArbolPeliculas peliculas = new CopyOfArbolPeliculas();
        
        
     }

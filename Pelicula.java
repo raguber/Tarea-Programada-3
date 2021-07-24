@@ -204,7 +204,8 @@ public class Pelicula
     */
     public void setCategoria(String newCat)
     {
-        categoria=newCat;
+        categoria +=","+newCat;
+        
     }
     
     /** Este metodo imprime todos los valores de la pelicula
@@ -217,6 +218,6 @@ public class Pelicula
     }
     public void agregue(Pelicula peli)
     {
-        
+    
     }
 }
