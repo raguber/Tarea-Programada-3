@@ -24,18 +24,24 @@ public class ArbolPeliculas
         listaPeliculas = null;
     }
 
-    public void muestreArbol(ArbolPeliculas arb)
+    public void muestreCategoriasArbol(ArbolPeliculas arbol)
     {
-        System.out.println("Arb "+numeroLetra);
-        if(letraIzquierda != null)
+        System.out.println("Arb "+arbol.numeroLetra);
+        if(arbol.listaPeliculas != null)
         {
-            System.out.print("iz");
-            muestreArbol(letraIzquierda);
+            System.out.println("muestra lista");
+            arbol.listaPeliculas.muestre();
+            arbol.listaPeliculas.muestreNombreFiltrado();
         }
-        if(letraDerecha  != null)
+        if(arbol.letraIzquierda != null)
         {
-            System.out.println("der");
-            muestreArbol(letraDerecha);
+
+            muestreCategoriasArbol(arbol.letraIzquierda);
+        }
+        if(arbol.letraDerecha  != null)
+        {
+
+            muestreCategoriasArbol(arbol.letraDerecha);
         }
 
     }
@@ -107,53 +113,20 @@ public class ArbolPeliculas
         }
     }
 
-    public ArbolPeliculas agreguePelicula(ArbolPeliculas arbol, String texto,Pelicula pelicula)//Una pelicula puede tener hilera distintas, entonces se debe ingresar una cat, y no se puede sacar de la pelicula
+    public void agreguePeliculaLista(ArbolPeliculas arbol,String hil,Pelicula pelicula,String hileraExacta)
     {
-        System.out.println("Te 2 sd"+texto);
-        ArbolPeliculas arbolAGuardar = arbol;
-        int pos=0;
-        String sub = "";
-        String p = "";
-        boolean siga = true;
-        while(siga){
-            try{
-                System.out.println("sz");
-                pos=texto.indexOf(",");
-                sub=texto.substring(1);
-                
-                System.out.println(sub);
-                arbolAGuardar = agreguePeliculaLista(arbol,sub,pelicula,sub);
-                System.out.println("prueba sda "+sub);
 
-                texto=texto.substring(pos+1,texto.length());
-                System.out.println(texto);
-                System.out.println("prueba sda");
-
-            }catch(StringIndexOutOfBoundsException e){
-                siga=false;
-            }
-        }
-        
-        return arbolAGuardar;
-
-    }
-
-    public ArbolPeliculas agreguePeliculaLista(ArbolPeliculas arbol,String hil,Pelicula pelicula,String hileraExacta)
-    {
-        ArbolPeliculas arbolRetorno = null;
-        System.out.println("Esxdfsj");
         pelicula.muestre();
-
         String Hilera = hil;
-        System.out.println("hil "+Hilera);
-
-        System.out.println("hil "+Hilera);
+        System.out.println("hil *"+Hilera);
         String letraAnalizar = Hilera.substring(0,1);
 
         int numLetraAnalizar = deNumeroLetra(letraAnalizar);
-        System.out.println(numLetraAnalizar+" "+numeroLetra);
+        System.out.println(numLetraAnalizar+" "+numeroLetra+"*"+letraAnalizar+"*");
+
         if(numLetraAnalizar>arbol.numeroLetra)//Ej: se ingresa b(2); y si se esta en a(1) entonces se verifica que exista alguien mayor que a y se manda b al siguiete
         {
+            System.out.println("hil ***"+Hilera);
             System.out.println(numLetraAnalizar+" "+numeroLetra);
             arbol.agreguePeliculaLista(arbol.letraDerecha,Hilera,pelicula,hileraExacta);
         }
@@ -169,13 +142,20 @@ public class ArbolPeliculas
                 {
                     //Se pasa al izquierda y se analiza usando la letra que sigue
 
-                    if(listaPeliculas == null)
+                    if(arbol.listaPeliculas == null)
                     {
+                        System.out.println("hilera exacta "+hileraExacta);
                         arbol.listaPeliculas = new ListaPeliculas(hileraExacta);
-                        
+                        System.out.println("hilera ");
+                        arbol.listaPeliculas.muestreNombreFiltrado();
+                        arbol.listaPeliculas.agregue(pelicula);
                     }
-                    arbol.listaPeliculas.agregue(pelicula);
-                    arbolRetorno = arbol;
+                    else
+                    {
+                        arbol.listaPeliculas.agregue(pelicula);
+                    }
+                    System.out.println("SS");
+
                 }
                 else//Se llego a una Hilera exacta
                 {
@@ -185,9 +165,13 @@ public class ArbolPeliculas
                 }
 
             }
+            else
+            {
+                arbol.agreguePeliculaLista(arbol.letraDerecha,Hilera, pelicula,hileraExacta);
+            }
 
         }
-        return arbolRetorno;
+
     }
 
     public void editeCategoria(ArbolPeliculas arbol,String hileraExis, String nuevHilera)
@@ -277,7 +261,7 @@ public class ArbolPeliculas
         if(numLetraAnalizar>arbol.numeroLetra)//Ej: se ingresa b(2); y si se esta en a(1) entonces se verifica que exista alguien mayor que a y se manda b al siguiete
         {
             System.out.println("SFA");
-             System.out.println("LEtra 1 "+arbol.numeroLetra+" "+numLetraAnalizar);
+            System.out.println("LEtra 1 "+arbol.numeroLetra+" "+numLetraAnalizar);
             if(arbol.letraDerecha != null)
             {
                 existe = arbol.determineSiExisteHilera(arbol.letraDerecha,Hilera);
@@ -335,24 +319,79 @@ public class ArbolPeliculas
     public void agregueHilera(ArbolPeliculas arbol,String texto)
     {
         System.out.println("Te "+texto);
-                System.out.println("Te "+texto);
+        System.out.println("Te "+texto);
         int pos=0;
         String sub = "";
         String p = "";
         boolean siga = true;
         while(siga){
             try{
-                texto.trim();
+             
                 pos=texto.indexOf(",");
-                sub=texto.substring(0,pos);
-                texto=texto.substring(pos+1,texto.length());
-               
+
+                if(pos != 0)
+                {
+                
+                    sub=texto.substring(0,pos);
+                    System.out.println("texto *"+sub+"* sub *"+sub+"*");
+                    texto=texto.substring(pos+1,texto.length());
+                }
+                else
+                {
+                    sub=texto;
+                }
+
                 System.out.println("prueba 2"+sub+" "+texto);
-                agregueHileraNueva(arbol,sub);
+          
+                boolean existe = determineSiExisteHilera(arbol,sub);
+                if(existe == false)
+                {
+                    agregueHileraNueva(arbol,sub);
+                }
+
+                System.out.println("existe "+sub+" "+existe);
             }catch(StringIndexOutOfBoundsException e){
                 siga=false;
             }
         }
+    }
+
+    public ArbolPeliculas agreguePelicula(ArbolPeliculas arbol, String texto,Pelicula pelicula)//Una pelicula puede tener hilera distintas, entonces se debe ingresar una cat, y no se puede sacar de la pelicula
+    {
+        System.out.println("Te 2 sd"+texto);
+        ArbolPeliculas arbolAGuardar = arbol;
+        int pos=0;
+        String sub = "";
+        String p = "";
+        boolean siga = true;
+        while(siga){
+            try{
+                
+                pos=texto.indexOf(",");
+
+                if(pos != 0)
+                {
+                   
+                    sub=texto.substring(0,pos);
+                    System.out.println("texto *"+sub+"* sub *"+sub+"*");
+                    texto=texto.substring(pos+1,texto.length());
+                }
+                else
+                {
+                    sub=texto;
+                }
+
+                System.out.println("prueba 2"+sub+" "+texto);
+
+
+                agreguePeliculaLista(arbol,sub,pelicula,sub);
+            }catch(StringIndexOutOfBoundsException e){
+                siga=false;
+            }
+        }
+
+        return arbolAGuardar;
+
     }
 
     public void agregueHileraNueva(ArbolPeliculas arbol,String cat)
@@ -396,11 +435,19 @@ public class ArbolPeliculas
                 {
 
                     System.out.println("letra no vacio");
-                    arbol.agregueHileraNueva(arbol.letraIzquierda,Hilera);
-                    // if(letraIzquierda.numeroLetra > numLetraAgregar)
-                    // {
 
-                    // }
+                    if(arbol.letraIzquierda.numeroLetra > numLetraAgregar)
+                    {
+                        ArbolPeliculas letraIzquierdaTemp = arbol.letraIzquierda;
+                        arbol.letraIzquierda = new ArbolPeliculas ();
+                        arbol.letraIzquierda.numeroLetra = numLetraAgregar;
+                        arbol.letraIzquierda.letraDerecha = letraIzquierdaTemp;
+                        arbol.agregueHileraNueva(arbol.letraIzquierda,Hilera);
+                    }
+                    else
+                    {
+                        arbol.agregueHileraNueva(arbol.letraIzquierda,Hilera);
+                    }
                 }
             }
 
@@ -410,6 +457,10 @@ public class ArbolPeliculas
 
             if(arbol.numeroLetra<numLetraAgregar)
             {
+                if(numLetraAgregar == 30 && letraAgregar.equals(" ")== false)
+                {
+                    System.out.println("num Letra "+numLetraAgregar+" letra *"+letraAgregar+"*");
+                }
                 System.out.println("letra menor derecha");
                 if(arbol.letraDerecha == null)
                 {
@@ -427,6 +478,7 @@ public class ArbolPeliculas
                         ArbolPeliculas letraDerechaTemp = arbol.letraDerecha;
 
                         arbol.letraDerecha = new ArbolPeliculas();
+                        arbol.letraDerecha.numeroLetra = numLetraAgregar;
                         arbol.letraDerecha.letraDerecha = letraDerechaTemp;
                         arbol.agregueHileraNueva(arbol.letraDerecha,Hilera);
                     }
@@ -487,6 +539,8 @@ public class ArbolPeliculas
                                 ArbolPeliculas letraIzquierdaTemp = arbol.letraIzquierda;
 
                                 arbol.letraIzquierda = new ArbolPeliculas();
+                                arbol.letraIzquierda.numeroLetra = numLetraAgregar;
+
                                 arbol.letraIzquierda.letraDerecha = letraIzquierdaTemp;
                                 arbol.agregueHileraNueva(arbol.letraIzquierda,Hilera);
 
@@ -494,7 +548,7 @@ public class ArbolPeliculas
                             else
                             {
                                 //LEtra igual letra menor;
-                              
+
                                 arbol.agregueHileraNueva(arbol.letraIzquierda,Hilera);
                             }
 
@@ -594,6 +648,8 @@ public class ArbolPeliculas
             case "z":
             valorLetra = 27;
             break;
+            case " ":
+            valorLetra = 28;
 
         }
         return valorLetra;
@@ -603,33 +659,15 @@ public class ArbolPeliculas
     {
         ArbolPeliculas arbol = new ArbolPeliculas();
         arbol.numeroLetra=(1);
-        arbol.agregueHileraNueva(arbol,"A");
 
-        boolean  existe = arbol.determineSiExisteHilera(arbol,"A");
-        System.out.println("E "+existe+"\n");
-        arbol.agregueHileraNueva(arbol,"asd");
-        existe = arbol.determineSiExisteHilera(arbol,"asd");
-        System.out.println("E "+existe);
-        arbol.agregueHileraNueva(arbol,"asg");
-        existe = arbol.determineSiExisteHilera(arbol,"asg");
-        System.out.println("E "+existe+"\n");
-        
-        existe = arbol.determineSiExisteHilera(arbol,"asd");
-        System.out.println("E "+existe+"\n");
-
-            
-            System.out.println("*******************pruebas***********");
-    
-            System.out.println("E "+existe+"\n");
-    
-            arbol.agregueHileraNueva(arbol,"sdasdsdfa sdfasf asfsdf");
-            existe = arbol.determineSiExisteHilera(arbol,"sdasdsdfa sdfasf asfsdf");
-            System.out.println("E "+existe+"\n");
-            String letra = ("   ");
-            System.out.println("N "+arbol.deNumeroLetra(" ")+" letra "+letra.length());        
-            arbol.agregueHileraNueva(arbol,"sdfssd");
-            existe = arbol.determineSiExisteHilera(arbol,"asd");
-            System.out.println("E "+existe+"\n");
+        arbol.agregueHilera(arbol,"International TV Shows, TV Dramas, TV Sci-Fi & Fantasy");
+        arbol.agregueHilera(arbol,"Dramas, International Movies");
+        arbol.agregueHilera(arbol,"Dramas, International Movies");
+        arbol.agregueHilera(arbol,"Horror Movies, International Movies");
+        arbol.agregueHilera(arbol,"Action & Adventure, Independent Movies, Sci-Fi & Fantasy");
+        boolean existe = arbol.determineSiExisteHilera(arbol,"Dramas");
+        System.out.println("Existe +"+existe);
+        // arbol.agregueHilera(arbol,);
 
     }
 }

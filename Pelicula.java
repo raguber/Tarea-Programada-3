@@ -39,6 +39,7 @@ public class Pelicula
        audiencia=laAudiencia;
        duracion=laDuracion;
        categoria=lasCategorias;
+       System.out.println("cat "+categoria);
        descripcion=laDescripcion;
         
         ///////////////////////////////////////////////////////////////////////////
@@ -188,7 +189,12 @@ public class Pelicula
     */
     public String getCategoria()
     {
-        return categoria;
+        String catProcesada = categoria;
+        catProcesada = catProcesada.replace('"',' ');
+        catProcesada = catProcesada.trim();
+        System.out.println("categoria "+categoria+" cat "+catProcesada);
+        
+        return catProcesada;
     }
     
     /** Devuelve un String con la descripcion del show

@@ -27,7 +27,6 @@ public class Controlador{
         arbolCategorias=new ArbolPeliculas();
         arbolCategorias.agregueHileraNueva(arbolCategorias,"a");
 
-
         arbolActores=new ArbolPeliculas();
         arbolActores.agregueHileraNueva(arbolActores,"a");
         arbolTipo=new ArbolPeliculas();
@@ -65,7 +64,7 @@ public class Controlador{
     public void lea()throws IOException{
 
         String line=bure.readLine();
-        for(int i=0;i<10;i++){
+        for(int i=0;i<80;i++){
             //Crear los atributos de la pelicula:
             String show_id;
             String tipo;
@@ -122,7 +121,10 @@ public class Controlador{
             line=line.substring(pos+1,line.length());
 
             pos = line.indexOf(";");
+            System.out.println("pos "+line.substring(0,pos));
             categoria=line.substring(0,pos);
+            
+            
 
             line=line.substring(pos+1,line.length());
 
@@ -132,11 +134,14 @@ public class Controlador{
 
             Pelicula p = new Pelicula(show_id,tipo,titulo,director,cast,pais,fecha,anio,audiencia,duracion,categoria,descripcion);
 
-
             ///////Imprimir las peliculas:
-
             p.muestre();
-            agreguePeliculaArboles(p);
+            System.out.println("CAtegorias *"+categoria+"*\n");
+            System.out.println("Categoira "+p.getCategoria());
+            if(i>1 && i != 10 && i!= 12)
+            {
+                agreguePeliculaArboles(p);
+            }
             line=bure.readLine();
         }
 
@@ -147,18 +152,15 @@ public class Controlador{
     public void agreguePeliculaArboles(Pelicula p)
     {
 
-       // arbolCategorias.agregueHilera(arbolActores,p.getCategoria());
-        arbolCategorias.agregueHilera(arbolCategorias,"Prueba, Last, Primer");
-        String letra = " Last";//Pruea
-        letra.trim();
-        boolean existe = arbolCategorias.determineSiExisteHilera(arbolCategorias," Last");
-        System.out.println("prueba "+existe);
-        System.out.println("SAFKN");
-        //arbolesCategorias = arbolCategorias.agreguePelicula(arbolesActores,p.getCategoria(),p)
+        arbolCategorias.agregueHilera(arbolCategorias,p.getCategoria());
+        System.out.println(p.getCategoria());
+
+        System.out.println("LLEGA AQUI");
+        arbolCategorias = arbolCategorias.agreguePelicula(arbolCategorias,p.getCategoria(),p);
+        arbolCategorias.muestreCategoriasArbol(arbolCategorias);
         //arbolActores.agregueHilera(arbolActores,p.getCast());
         //arbolTipo.agregueHileraNueva(arbolTipo,p.getTipo());
         //arbolPais.agregueHileraNueva(arbolPais,p.getPais());
-
 
         //agregar categorías, actores, tipo, pais de procedencia
         // String texto,sub;
@@ -187,7 +189,6 @@ public class Controlador{
         // siga=false;
         // }
         // }
-
 
     }
 

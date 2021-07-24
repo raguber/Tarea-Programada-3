@@ -8,10 +8,11 @@ public class ListaPeliculas
     /**
      * Constructor for objects of class ListaPeliculas
      */
-    public ListaPeliculas(String nombreFiltrado)
+    public ListaPeliculas(String nombreFilt)
     {
         // initialise instance variables
-        nombreFiltrado = nombreFiltrado;
+        nombreFiltrado = nombreFilt;
+        System.out.println("nom "+nombreFiltrado);
 
         pelicula = null;
         peliculaDerecha = null;
@@ -20,17 +21,23 @@ public class ListaPeliculas
     public void muestre()
     {
         pelicula.muestre();
+        System.out.println(peliculaDerecha+" null");
         if(peliculaDerecha != null)
         {
             peliculaDerecha.muestre();
         }
-        
+
+    }
+    public void muestreNombreFiltrado()
+    {
+        System.out.println("nom "+nombreFiltrado);
     }
 
     public void agregue(Pelicula peli)
     {
         if(pelicula == null)
         {
+            System.out.println("PELO");
             pelicula = peli;
         }
         else
@@ -38,10 +45,18 @@ public class ListaPeliculas
             if(peliculaDerecha == null)
             {
                 peliculaDerecha =  new ListaPeliculas(nombreFiltrado);
-                
+                System.out.println("edecaha"+nombreFiltrado);
+                peliculaDerecha.agregue(peli);
             }
-            peliculaDerecha.agregue(peli);
+            else
+            {
+                peliculaDerecha.agregue(peli);
+            }
         }
+    }
+    public static void main(String args[])
+    {
+        System.out.println("+"+"hola");
     }
 
 }
