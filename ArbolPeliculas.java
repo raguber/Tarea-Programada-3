@@ -24,24 +24,24 @@ public class ArbolPeliculas
         listaPeliculas = null;
     }
 
-    public void muestreCategoriasArbol(ArbolPeliculas arbol)
+    public void muestreFiltradoArbol(ArbolPeliculas arbol)
     {
-        System.out.println("Arb "+arbol.numeroLetra);
+
         if(arbol.listaPeliculas != null)
         {
-            System.out.println("muestra lista");
-            arbol.listaPeliculas.muestre();
+
             arbol.listaPeliculas.muestreNombreFiltrado();
+
         }
         if(arbol.letraIzquierda != null)
         {
 
-            muestreCategoriasArbol(arbol.letraIzquierda);
+            muestreFiltradoArbol(arbol.letraIzquierda);
         }
         if(arbol.letraDerecha  != null)
         {
 
-            muestreCategoriasArbol(arbol.letraDerecha);
+            muestreFiltradoArbol(arbol.letraDerecha);
         }
 
     }
@@ -326,12 +326,12 @@ public class ArbolPeliculas
         boolean siga = true;
         while(siga){
             try{
-             
+
                 pos=texto.indexOf(",");
 
                 if(pos != 0)
                 {
-                
+
                     sub=texto.substring(0,pos);
                     System.out.println("texto *"+sub+"* sub *"+sub+"*");
                     texto=texto.substring(pos+1,texto.length());
@@ -342,7 +342,7 @@ public class ArbolPeliculas
                 }
 
                 System.out.println("prueba 2"+sub+" "+texto);
-          
+
                 boolean existe = determineSiExisteHilera(arbol,sub);
                 if(existe == false)
                 {
@@ -366,12 +366,12 @@ public class ArbolPeliculas
         boolean siga = true;
         while(siga){
             try{
-                
+
                 pos=texto.indexOf(",");
 
                 if(pos != 0)
                 {
-                   
+
                     sub=texto.substring(0,pos);
                     System.out.println("texto *"+sub+"* sub *"+sub+"*");
                     texto=texto.substring(pos+1,texto.length());
@@ -382,7 +382,6 @@ public class ArbolPeliculas
                 }
 
                 System.out.println("prueba 2"+sub+" "+texto);
-
 
                 agreguePeliculaLista(arbol,sub,pelicula,sub);
             }catch(StringIndexOutOfBoundsException e){

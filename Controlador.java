@@ -15,6 +15,7 @@ public class Controlador{
     ArbolPeliculas arbolActores;
     ArbolPeliculas arbolTipo;
     ArbolPeliculas arbolPais;
+    ArbolPeliculas arbolClasificacion;
     Scanner scan;
     EntradaDatos entrada;
     /**
@@ -26,13 +27,14 @@ public class Controlador{
         bure=new BufferedReader(fire);
         arbolCategorias=new ArbolPeliculas();
         arbolCategorias.agregueHileraNueva(arbolCategorias,"a");
-
         arbolActores=new ArbolPeliculas();
         arbolActores.agregueHileraNueva(arbolActores,"a");
         arbolTipo=new ArbolPeliculas();
         arbolTipo.agregueHileraNueva(arbolTipo,"a");
-        arbolPais=new ArbolPeliculas();
+        arbolPais =new ArbolPeliculas();
         arbolPais.agregueHileraNueva(arbolPais,"a");
+        arbolClasificacion = new ArbolPeliculas();
+        arbolClasificacion.agregueHileraNueva(arbolClasificacion,"a");
 
         scan = new Scanner(System.in);
         entrada = new EntradaDatos();
@@ -123,8 +125,7 @@ public class Controlador{
             pos = line.indexOf(";");
             System.out.println("pos "+line.substring(0,pos));
             categoria=line.substring(0,pos);
-            
-            
+
 
             line=line.substring(pos+1,line.length());
 
@@ -134,18 +135,13 @@ public class Controlador{
 
             Pelicula p = new Pelicula(show_id,tipo,titulo,director,cast,pais,fecha,anio,audiencia,duracion,categoria,descripcion);
 
-            ///////Imprimir las peliculas:
-            p.muestre();
-            System.out.println("CAtegorias *"+categoria+"*\n");
-            System.out.println("Categoira "+p.getCategoria());
-            if(i>1 && i != 10 && i!= 12)
+            if(i>1)
             {
                 agreguePeliculaArboles(p);
             }
             line=bure.readLine();
         }
 
-        System.out.println("*********");
 
     }
 
@@ -153,43 +149,17 @@ public class Controlador{
     {
 
         arbolCategorias.agregueHilera(arbolCategorias,p.getCategoria());
-        System.out.println(p.getCategoria());
-
-        System.out.println("LLEGA AQUI");
+        arbolActores.agregueHilera(arbolActores,p.getCast());
+        arbolPais.agregueHilera(arbolPais,p.getPais());
+       arbolClasificacion.agregueHilera(arbolClasificacion,p.getTipo());
+        
+        
         arbolCategorias = arbolCategorias.agreguePelicula(arbolCategorias,p.getCategoria(),p);
-        arbolCategorias.muestreCategoriasArbol(arbolCategorias);
-        //arbolActores.agregueHilera(arbolActores,p.getCast());
-        //arbolTipo.agregueHileraNueva(arbolTipo,p.getTipo());
-        //arbolPais.agregueHileraNueva(arbolPais,p.getPais());
-
-        //agregar categorías, actores, tipo, pais de procedencia
-        // String texto,sub;
-        // boolean siga=true;
-        // texto=p.getCategoria();
-        // int pos;
-        // while(siga){
-        // try{
-        // pos=texto.indexOf(",");
-        // sub=texto.substring(0,pos);
-        // texto=texto.substring(pos+1,texto.length());
-        // arbolCategorias.agreguePelicula(sub,p);
-        // }catch(StringIndexOutOfBoundsException e){
-        // siga=false;
-        // }
-        // }
-        // siga=true;
-        // texto=p.getCast();
-        // while(siga){
-        // try{
-        // pos=texto.indexOf(",");
-        // sub=texto.substring(0,pos);
-        // texto=texto.substring(pos+1,texto.length());
-        // arbolActores.agreguePelicula(sub,p);
-        // }catch(StringIndexOutOfBoundsException e){
-        // siga=false;
-        // }
-        // }
-
+        arbolActores = arbolActores.agreguePelicula(arbolActores,p.getCast(),p);
+        arbolPais = arbolPais.agreguePelicula(arbolPais,p.getPais(),p);
+        arbolClasificacion = arbolClasificacion.agreguePelicula(arbolClasificacion,p.getTipo(),p);
+        
+        
     }
 
     /**
@@ -232,14 +202,13 @@ public class Controlador{
                 break;
                 case 3:
                 String catEscogida=entrada.pidaTexto("Escogió el 3. Escoja alguna de las categorías");
-                System.out.println(catEscogida+"cas");
-                catEscogida.trim();
-                boolean existe =  arbolCategorias.determineSiExisteHilera(arbolCategorias,catEscogida);
-                System.out.println("existe prueba "+existe);  
-                if((arbolCategorias.determineSiExisteHilera(arbolCategorias,catEscogida)==true)){
-                    String nuevoNombre = entrada.pidaTexto("La categoría existe, inserte el nombre de la nueva categoría");
-                    arbolCategorias.editeCategoria(arbolCategorias,catEscogida,nuevoNombre);
-                }
+                //boolean existe =  arbolCategorias.determineSiExisteHilera(arbolCategorias,catEscogida);
+                arbolCategorias.muestreFiltradoArbol(arbolCategorias);
+
+                // if((arbolCategorias.determineSiExisteHilera(arbolCategorias,catEscogida)==true)){
+                // String nuevoNombre = entrada.pidaTexto("La categoría existe, inserte el nombre de la nueva categoría");
+                // arbolCategorias.editeCategoria(arbolCategorias,catEscogida,nuevoNombre);
+                // }
                 break;
                 case 4:
                 termine=true;

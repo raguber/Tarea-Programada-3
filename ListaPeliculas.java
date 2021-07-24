@@ -12,7 +12,7 @@ public class ListaPeliculas
     {
         // initialise instance variables
         nombreFiltrado = nombreFilt;
-        System.out.println("nom "+nombreFiltrado);
+    
 
         pelicula = null;
         peliculaDerecha = null;
@@ -21,7 +21,6 @@ public class ListaPeliculas
     public void muestre()
     {
         pelicula.muestre();
-        System.out.println(peliculaDerecha+" null");
         if(peliculaDerecha != null)
         {
             peliculaDerecha.muestre();
@@ -30,14 +29,14 @@ public class ListaPeliculas
     }
     public void muestreNombreFiltrado()
     {
-        System.out.println("nom "+nombreFiltrado);
+        System.out.println("Categoria *"+nombreFiltrado+"*");
     }
 
     public void agregue(Pelicula peli)
     {
         if(pelicula == null)
         {
-            System.out.println("PELO");
+   
             pelicula = peli;
         }
         else

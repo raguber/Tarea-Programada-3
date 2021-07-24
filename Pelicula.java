@@ -141,7 +141,14 @@ public class Pelicula
     */
     public String getCast()
     {
-        return cast;
+       String castProcesado = cast;
+        castProcesado = castProcesado.replace('"',' ');
+        castProcesado = castProcesado.trim();
+        castProcesado = castProcesado.replaceAll(", ",",");
+        castProcesado = castProcesado.trim();
+        
+       return castProcesado;
+        
     }
     
     /** Devuelve un String con el país del show
@@ -192,6 +199,8 @@ public class Pelicula
         String catProcesada = categoria;
         catProcesada = catProcesada.replace('"',' ');
         catProcesada = catProcesada.trim();
+        catProcesada = catProcesada.replaceAll(", ",",");
+        catProcesada = catProcesada.trim();
         System.out.println("categoria "+categoria+" cat "+catProcesada);
         
         return catProcesada;
@@ -226,4 +235,11 @@ public class Pelicula
     {
     
     }
+    public static void main(String args[])
+    {
+        Pelicula peli =  new Pelicula("ads","das","sda","asdf"," Antonido Banderas, Miguel Bose, Carlos ","pi","fas","e2","dsfad","safdsadf","Horror movies, Drama, Independet shows","fasdfd");
+        
+        System.out.println("*"+peli.getCategoria()+"*");
+    }
+  
 }
