@@ -12,7 +12,6 @@ public class ListaPeliculas
     {
         // initialise instance variables
         nombreFiltrado = nombreFilt;
-    
 
         pelicula = null;
         peliculaDerecha = null;
@@ -20,13 +19,19 @@ public class ListaPeliculas
 
     public void muestre()
     {
+
         pelicula.muestre();
-        if(peliculaDerecha != null)
+        if(peliculaDerecha == null)
+        {
+            System.out.println("No mas peliculas \n");
+        }
+        else
         {
             peliculaDerecha.muestre();
         }
 
     }
+
     public void muestreNombreFiltrado()
     {
         System.out.println("Categoria *"+nombreFiltrado+"*");
@@ -34,25 +39,34 @@ public class ListaPeliculas
 
     public void agregue(Pelicula peli)
     {
-        if(pelicula == null)
+        if((pelicula != peli))
         {
-   
-            pelicula = peli;
-        }
-        else
-        {
-            if(peliculaDerecha == null)
+            if(pelicula == null)
             {
-                peliculaDerecha =  new ListaPeliculas(nombreFiltrado);
-     
-                peliculaDerecha.agregue(peli);
+
+                pelicula = peli;
             }
             else
             {
-                peliculaDerecha.agregue(peli);
+           
+                if(peliculaDerecha == null)
+                {
+                    peliculaDerecha =  new ListaPeliculas(nombreFiltrado);
+
+                    peliculaDerecha.agregue(peli);
+                }
+                else
+                {
+                    peliculaDerecha.agregue(peli);
+                }
             }
         }
+        else
+        {
+            System.out.println("La pelicula ya existe");
+        }
     }
+
     public static void main(String args[])
     {
         System.out.println("+"+"hola");

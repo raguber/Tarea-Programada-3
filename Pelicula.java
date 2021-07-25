@@ -235,11 +235,6 @@ public class Pelicula
     {
     
     }
-    public static void main(String args[])
-    {
-        Pelicula peli =  new Pelicula("ads","das","sda","asdf"," Antonido Banderas, Miguel Bose, Carlos ","pi","fas","e2","dsfad","safdsadf","Horror movies, Drama, Independet shows","fasdfd");
-        
-        System.out.println("*"+peli.getCategoria()+"*");
-    }
+    
   
 }

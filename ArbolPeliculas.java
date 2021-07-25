@@ -13,103 +13,41 @@ public class ArbolPeliculas
     int numeroLetra;
     ArbolPeliculas letraIzquierda;//Letra izquierda para letras que necesitan previamente valor del nodo (letra);
     ArbolPeliculas letraDerecha;//Letra derecha para letras que no necesita previamente el valor del nodo (letra);
-    Pelicula pelicula;
+
     ListaPeliculas listaPeliculas;
     ArbolPeliculas()
     {
-        numeroLetra = 0;//Pruebas
+        numeroLetra = 0;
         letraIzquierda = null;
         letraDerecha = null;
-        pelicula = null;
+
         listaPeliculas = null;
     }
 
-    public void muestreFiltradoArbol(ArbolPeliculas arbol)
+    public void muestreFiltradoArbol(ArbolPeliculas arbol, boolean mostrarPeliculas)
     {
 
         if(arbol.listaPeliculas != null)
         {
 
             arbol.listaPeliculas.muestreNombreFiltrado();
-
+            if(mostrarPeliculas == true)
+            {
+                arbol.listaPeliculas.muestre();
+            }
         }
         if(arbol.letraIzquierda != null)
         {
 
-            muestreFiltradoArbol(arbol.letraIzquierda);
+            muestreFiltradoArbol(arbol.letraIzquierda,mostrarPeliculas);
+
         }
         if(arbol.letraDerecha  != null)
         {
 
-            muestreFiltradoArbol(arbol.letraDerecha);
+            muestreFiltradoArbol(arbol.letraDerecha,mostrarPeliculas);
         }
 
-    }
-
-    public void busqueHilera(ArbolPeliculas arbol,String cat,boolean mostrarCoincidenciaExacta)
-    {
-        String Hilera = cat;
-
-        String letraAnalizar = Hilera.substring(0,1);
-        int numLetraAnalizar = deNumeroLetra(letraAnalizar);
-        if(numLetraAnalizar>arbol.numeroLetra)//Ej: se ingresa b(2); y si se esta en a(1) entonces se verifica que exista alguien mayor que a y se manda b al siguiete
-        {
-
-            if(arbol.letraDerecha != null)
-            {
-                arbol.busqueHilera (arbol.letraDerecha,Hilera,mostrarCoincidenciaExacta);
-            }
-            else
-            {
-
-            }
-        }
-        else
-        {
-            if(numLetraAnalizar==arbol.numeroLetra)
-            {
-
-                Hilera = Hilera.substring(1);
-
-                if(Hilera.isEmpty() == true)//Caso de existir mas letras a analizar
-                {
-
-                    if(mostrarCoincidenciaExacta  == true)
-                    {
-                        if(arbol.listaPeliculas != null)
-                        {
-                            arbol.listaPeliculas.muestre();
-                        }
-                        else
-                        {
-
-                        }
-                    }
-                    else
-                    {
-                        //mostrarPeliculasInclSubarboles();
-                    }
-
-                }
-                else//Se llego a una Hilera exacta
-                {
-                    if(arbol.letraIzquierda != null)
-                    {
-                        arbol.busqueHilera(arbol.letraIzquierda,Hilera, mostrarCoincidenciaExacta);
-
-                    }
-                    else
-                    {
-
-                    }
-                }
-            }
-            else//Numero Letra menor que la del nodo //Ej, se busca b pero se esta en c, ya se sabe que no existe, de existir una coincidencia no llegaria a c., si no que se quedaria en b
-            //Ejemplo de rama (a)----(c) Si b>a (2>1), entonces a le dice a b que se vaya por el camino a la derecha, pero llega a c, entonces no existe un b guardado.
-            {
-
-            }
-        }
     }
 
     public void agreguePeliculaLista(ArbolPeliculas arbol,String hil,Pelicula pelicula,String hileraExacta)
@@ -140,13 +78,11 @@ public class ArbolPeliculas
 
                         arbol.listaPeliculas = new ListaPeliculas(hileraExacta);
 
-                     
-                        arbol.listaPeliculas.agregue(pelicula);
+                        
                     }
-                    else
-                    {
+                    
                         arbol.listaPeliculas.agregue(pelicula);
-                    }
+                    
 
                 }
                 else//Se llego a una Hilera exacta
@@ -166,31 +102,42 @@ public class ArbolPeliculas
 
     }
 
-    public void editeCategoria(ArbolPeliculas arbol,String hileraExis, String nuevHilera)
+    public void editeCategoria(ArbolPeliculas arbol,String hileraExis, String nuevHilera )
     {
-        boolean existeCategoria = determineSiExisteHilera(arbol,hileraExis);
-        if(existeCategoria == true)
-        {
-            ListaPeliculas peliculas = retorneListaPeliculas(arbol,hileraExis);
-            agregueHileraNueva(arbol,nuevHilera);
+        boolean existeCategoria = determineSiExisteHilera(arbol,hileraExis,false);
 
-            //editeCategoriaPeliculas(peliculas);
-        }
-        else
-        {
-            System.out.println("Error no existen pelicualas con la categoria ingresada");
-        }
+        ListaPeliculas peliculas = new ListaPeliculas("Vacio");
+        peliculas = retorneListaPeliculas(arbol,hileraExis);
+
+        agregueHileraNueva(arbol,nuevHilera);
+
+        editeCategoriaPeliculas(arbol,peliculas, nuevHilera);
 
     }
 
-    public void editeCategoriaPeliculas(Pelicula pelicula,String nuevHil)
+    public void editeCategoriaPeliculas(ArbolPeliculas arbol,ListaPeliculas peliculas,String nuevHil)
     {
-        // agregueHileraNueva(nuevHil);
-        // while(peliculas.peliculaSiguiente != null)
-        // {
+        Pelicula pelicula = peliculas.pelicula;
+        arbol.agreguePeliculaLista(arbol,nuevHil,pelicula, nuevHil);
+        pelicula.setCategoria(nuevHil);
+        boolean masPeliculas = true;
+        while(masPeliculas)
+        {
+            if(peliculas.peliculaDerecha != null)
+            {
+                peliculas.peliculaDerecha.pelicula.setCategoria(nuevHil);
+                arbol.agreguePeliculaLista(arbol,nuevHil,peliculas.peliculaDerecha.pelicula,nuevHil);
 
-        // }
+            }
+            else
+            {
+                peliculas = peliculas.peliculaDerecha;
+                masPeliculas = false;
+            }
+        }
+        arbol.determineSiExisteHilera(arbol,nuevHil, true);
     }
+    // }
 
     public void muestreCategoria()
     {
@@ -199,7 +146,8 @@ public class ArbolPeliculas
 
     public ListaPeliculas retorneListaPeliculas(ArbolPeliculas arbol,String hilera)
     {
-        ListaPeliculas listaPeli = null;
+        ListaPeliculas listaPeli = arbol.listaPeliculas;
+
         String Hilera = hilera;
 
         String letraAnalizar = Hilera.substring(0,1);
@@ -222,7 +170,6 @@ public class ArbolPeliculas
                     //Se pasa al izquierda y se analiza usando la letra que sigue
 
                     listaPeli = arbol.listaPeliculas;
-
                 }
                 else//Se llego a una Hilera exacta
                 {
@@ -234,10 +181,11 @@ public class ArbolPeliculas
             }
 
         }
-        return listaPeliculas;
+      
+        return listaPeli;
     }
 
-    public boolean determineSiExisteHilera(ArbolPeliculas arbol,String cat)
+    public boolean determineSiExisteHilera(ArbolPeliculas arbol,String cat, boolean mostrarPeliculas)
     {
         boolean existe = false;
         String Hilera = cat;
@@ -249,7 +197,7 @@ public class ArbolPeliculas
 
             if(arbol.letraDerecha != null)
             {
-                existe = arbol.determineSiExisteHilera(arbol.letraDerecha,Hilera);
+                existe = arbol.determineSiExisteHilera(arbol.letraDerecha,Hilera,mostrarPeliculas);
             }
             else
             {
@@ -271,7 +219,14 @@ public class ArbolPeliculas
                 {
                     //Se pasa al izquierda y se analiza usando la letra que sigue
 
-                    existe = true;
+                    if(arbol.listaPeliculas != null)
+                    {
+                        if(mostrarPeliculas == true)
+                        {
+                            arbol.listaPeliculas.muestre();
+                        }
+                        existe = true;   
+                    }
 
                 }
                 else//Se llego a una Hilera exacta
@@ -279,7 +234,7 @@ public class ArbolPeliculas
                     if(arbol.letraIzquierda != null)
                     {
 
-                        existe = arbol.determineSiExisteHilera(arbol.letraIzquierda,Hilera);
+                        existe = arbol.determineSiExisteHilera(arbol.letraIzquierda,Hilera,mostrarPeliculas);
 
                     }
                     else
@@ -308,25 +263,31 @@ public class ArbolPeliculas
         String sub = "";
         String p = "";
         boolean siga = true;
+       
         while(siga){
             try{
 
                 pos=texto.indexOf(",");
+           
+              
 
-                if(pos != 0)
+                if(pos != -1)
                 {
 
                     sub=texto.substring(0,pos);
 
                     texto=texto.substring(pos+1,texto.length());
+                    
                 }
                 else
                 {
+                    
                     sub=texto;
+                    
+                    siga = false;
                 }
 
-
-                boolean existe = determineSiExisteHilera(arbol,sub);
+                boolean existe = determineSiExisteHilera(arbol,sub,false);
                 if(existe == false)
                 {
                     agregueHileraNueva(arbol,sub);
@@ -346,12 +307,13 @@ public class ArbolPeliculas
         String sub = "";
         String p = "";
         boolean siga = true;
+        
         while(siga){
             try{
 
                 pos=texto.indexOf(",");
 
-                if(pos != 0)
+                if(pos != -1)
                 {
 
                     sub=texto.substring(0,pos);
@@ -360,9 +322,13 @@ public class ArbolPeliculas
                 }
                 else
                 {
+                    
                     sub=texto;
+                    
+                    sub=texto;
+                    
+                    siga = false;
                 }
-
 
                 agreguePeliculaLista(arbol,sub,pelicula,sub);
             }catch(StringIndexOutOfBoundsException e){
@@ -377,7 +343,6 @@ public class ArbolPeliculas
     public void agregueHileraNueva(ArbolPeliculas arbol,String cat)
     {
         String Hilera = cat;
-
 
         int tamanoHilera = Hilera.length();
         String letraAgregar = Hilera.substring(0,1);
@@ -399,7 +364,7 @@ public class ArbolPeliculas
 
                 letraAgregar = Hilera.substring(0,1);
                 numLetraAgregar = deNumeroLetra(letraAgregar);
-             
+
                 //Se debe agregar a la izquierda 
                 if(arbol.letraIzquierda == null)
                 {
@@ -411,7 +376,6 @@ public class ArbolPeliculas
                 }
                 else
                 {
-
 
                     if(arbol.letraIzquierda.numeroLetra > numLetraAgregar)
                     {
@@ -478,7 +442,7 @@ public class ArbolPeliculas
                 {
 
                     Hilera = Hilera.substring(1);
-                
+
                     if(Hilera.isEmpty()==true)
                     {
                         //AgregueHilera;
@@ -490,7 +454,7 @@ public class ArbolPeliculas
                         letraAgregar = Hilera.substring(0,1);
 
                         numLetraAgregar = deNumeroLetra(letraAgregar);
-             
+
                         if(arbol.letraIzquierda == null)
                         {
 
@@ -633,7 +597,7 @@ public class ArbolPeliculas
         arbol.agregueHilera(arbol,"Dramas, International Movies");
         arbol.agregueHilera(arbol,"Horror Movies, International Movies");
         arbol.agregueHilera(arbol,"Action & Adventure, Independent Movies, Sci-Fi & Fantasy");
-        boolean existe = arbol.determineSiExisteHilera(arbol,"Dramas");
+        boolean existe = arbol.determineSiExisteHilera(arbol,"Dramas",false);
         System.out.println("Existe +"+existe);
         // arbol.agregueHilera(arbol,);
 
