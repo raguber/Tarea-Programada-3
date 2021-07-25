@@ -162,13 +162,17 @@ public class Controlador{
         fire.close();
     }
 
+    /**
+    El menú muestra todas las posibilidades del programa. Se muestra una vez que se instanciaron las películas.
+       */
     public void menu(){
         //opciones: Cuáles películas pertenecen a una categoría específica//imprimir la lista de x categoría
         //en cuales videos ha actuado una persona//imprimir la lista actores
         //devolver la lista completa
         //editar categoría
         boolean termine=false;
-        String opciones="¿Qué desea hacer?\n1. Buscar una categoría\n2.Buscar un actor/actriz\n3.Editar una categoría\n4. Salir";
+        String opciones="¿Qué desea hacer?\n1. Buscar una categoría\n2.Buscar un actor/actriz\n3.Editar una categoría\n4. Mostrar las películas por país";
+        opciones="\5. Mostrar las películas por tipo\6. Salir";
         while(termine!=true){
             //System.out.println(opciones);
             int decision=entrada.pidaNumeroRango(opciones,4,1);
@@ -207,6 +211,23 @@ public class Controlador{
                 }
                 break;
                 case 4:
+                String paisEscogido = entrada.pidaTexto("Escogió el 4. Escriba alguno de los países");
+                if(arbolPais.determineSiExisteHilera(arbolPais,paisEscogido)==true){
+                    ListaPeliculas x= arbolPais.retorneListaPeliculas(arbolPais,paisEscogido);
+                }else{
+                    System.out.println("Error no existe país o no existen películas de dicho país");
+                }
+                break;
+                case 5:
+                String tipoEscogido = entrada.pidaTexto("Escogió el 5. Escriba alguno de los tipos");
+                if(arbolTipo.determineSiExisteHilera(arbolTipo,tipoEscogido)==true){
+                    ListaPeliculas x= arbolTipo.retorneListaPeliculas(arbolTipo,tipoEscogido);
+                }else{
+                    System.out.println("Error no existe tipo");
+                }
+                break;
+                case 6:
+                System.out.println("Escogió 6. Adiós");
                 termine=true;
                 break;
             }
