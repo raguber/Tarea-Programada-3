@@ -1,14 +1,18 @@
 #BlueJ class context
 comment0.target=ListaPeliculas
+comment0.text=\r\n\ Clase\ ListaPeliculas,\ la\ cual\ crea\ una\ lista\ de\ peliculas\ para\ el\ arbol\ de\ categorias,\ de\ cast,\ de\ tipo\ y\ de\ pais\ de\ procedencia.\r\n\ \r\n\ @author\ Randy\ Ag\u00FCero\ B90082,\ Frayvin\ Alvarado\ B60292\ y\ Andr\u00E9s\ Serrano\ C07483\r\n\ @version\ 24/7/2021\r\n
 comment1.params=nombreFilt
 comment1.target=ListaPeliculas(java.lang.String)
-comment1.text=\n\ Constructor\ for\ objects\ of\ class\ ListaPeliculas\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ ListaPeliculas\r\n
 comment2.params=
 comment2.target=void\ muestre()
+comment2.text=Muestra\ las\ peliculas\ en\ la\ lista\r\n\r\n
 comment3.params=
 comment3.target=void\ muestreNombreFiltrado()
+comment3.text=Muestra\ las\ peliculas\ en\ la\ lista\r\n\r\n
 comment4.params=peli
 comment4.target=void\ agregue(Pelicula)
+comment4.text=Agrega\ la\ pelicula\ a\ esta\ lista\ de\ peliculas\r\n@param\ pelicula,\ la\ cual\ se\ va\ a\ agregar\ a\ la\ lista\r\n
 comment5.params=args
 comment5.target=void\ main(java.lang.String[])
 numComments=6

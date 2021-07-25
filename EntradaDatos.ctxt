@@ -1,14 +1,15 @@
 #BlueJ class context
 comment0.target=EntradaDatos
-comment0.text=\n\ @author\ Randy\ Ag\u00FCero\ B90082,\ Frayvin\ Alvarado\ B60292\ y\ Andr\u00E9s\ Serrano\ C07483\n\ Esta\ clase\ se\ usara\ para\ pedir\ datos\ al\ usuario\n
+comment0.text=\r\n\ Clase\ EntradaDatos,\ la\ cual\ pide\ los\ datos\ al\ usuario\ a\ ingresar.\r\n\ \r\n\ @author\ Randy\ Ag\u00FCero\ B90082,\ Frayvin\ Alvarado\ B60292\ y\ Andr\u00E9s\ Serrano\ C07483\r\n\ @version\ 24/7/2021\r\n
 comment1.params=
 comment1.target=EntradaDatos()
 comment2.params=mensaje\ opcionMaxima\ opcionMinima
 comment2.target=int\ pidaNumeroRango(java.lang.String,\ int,\ int)
+comment2.text=Pide\ los\ numeros\ a\ elegir\r\n@param\ mensaje\r\n@int\ opcionMaxima\r\n@int\ opcionMinima\r\n@return\ opcionElegida,\ la\ que\ se\ escogio\r\n
 comment3.params=mensaje
 comment3.target=java.lang.String\ pidaTexto(java.lang.String)
-comment3.text=\n\ Este\ metodo\ funciona\ para\ pedir\ un\ texto,\ como\ el\ nombre\n
+comment3.text=Este\ metodo\ funciona\ para\ pedir\ un\ texto,\ como\ el\ nombre\r\n\ @param\ mensaje,\ que\ pida\ el\ texto\r\n\ @return\ texto\r\n
 comment4.params=mensaje\ numeroMinimo
 comment4.target=int\ pidaNumero(java.lang.String,\ int)
-comment4.text=\n\ Este\ metodo\ funciona\ para\ pedir\ un\ numero\n\ necesita\ un\ numero\ minimo\n
+comment4.text=\r\n\ Este\ metodo\ funciona\ para\ pedir\ un\ numero\r\n\ @param\ mensaje\r\n\ @param\ numeroMinimo\r\n\ @return\ numero\r\n
 numComments=5

@@ -3,11 +3,11 @@
  * respectivos atributos.
  * 
  * @author Randy Agüero B90082, Frayvin Alvarado B60292 y Andrés Serrano C07483
- * @version 23/7/2021
+ * @version 24/7/2021
  */
 public class Pelicula
 {
-    //Instancias
+     //Campos de la clase
     private Pelicula p;
     Pelicula next;
     String show_id;
@@ -38,72 +38,13 @@ public class Pelicula
        anio=elAnio;
        audiencia=laAudiencia;
        duracion=laDuracion;
-       categoria=lasCategorias;
-       
+       categoria=lasCategorias; 
        descripcion=laDescripcion;
-        
-        ///////////////////////////////////////////////////////////////////////////
-        // Pelicula.show_id = show_id_nuevo; 
-       /**
-        int pos = v.indexOf(";");
-        show_id=v.substring(0,pos);//ABC;DEF;GHI
-        v=v.substring(pos+1,v.length());//DEF;GHI
-        
-        pos = v.indexOf(";");
-        tipo=v.substring(0,pos);
-        v=v.substring(pos+1,v.length());
-        
-        pos = v.indexOf(";");
-        titulo=v.substring(0,pos);
-        v=v.substring(pos+1,v.length());
-        
-        pos = v.indexOf(";");
-        director=v.substring(0,pos);
-        v=v.substring(pos+1,v.length());
-        
-        pos = v.indexOf(";");
-        cast=v.substring(0,pos);
-        v=v.substring(pos+1,v.length());
-        
-        pos = v.indexOf(";");
-        pais=v.substring(0,pos);
-        v=v.substring(pos+1,v.length());
-        
-        pos = v.indexOf(";");
-        fecha=v.substring(0,pos);
-        v=v.substring(pos+1,v.length());
-        
-        pos = v.indexOf(";");
-        anio=v.substring(0,pos);
-        v=v.substring(pos+1,v.length());
-        
-        pos = v.indexOf(";");
-        audiencia=v.substring(0,pos);
-        v=v.substring(pos+1,v.length());
-        
-        pos = v.indexOf(";");
-        duracion=v.substring(0,pos);
-        v=v.substring(pos+1,v.length());
-        
-        pos = v.indexOf(";");
-        categoria=v.substring(0,pos);
-        v=v.substring(pos+1,v.length());
-        
-        pos = v.indexOf(";");
-        descripcion=v.substring(0,pos);
-        v=v.substring(pos+1,v.length());
-        */
-       
-       
-        /**
-         * agreguePelicula(categoria,pelicual):
-         */
-    }
-
+    }//Cierre del constructor
+    
     /**
      * METODOS
     */
-    
     /** Devuelve un String con el identificador del show
     * @return show_id el identificador
     */
@@ -117,7 +58,12 @@ public class Pelicula
     */
     public String getTipo()
     {
-        return show_id;
+        String tipoProcesada = tipo;
+        tipoProcesada = tipoProcesada.replace('"',' ');
+        tipoProcesada = tipoProcesada.trim();
+        tipoProcesada = tipoProcesada.replaceAll(", ",",");
+        tipoProcesada = tipoProcesada.trim();
+        return tipoProcesada;
     }
     
     /** Devuelve un String con el Titulo o nombre del show
@@ -146,17 +92,20 @@ public class Pelicula
         castProcesado = castProcesado.trim();
         castProcesado = castProcesado.replaceAll(", ",",");
         castProcesado = castProcesado.trim();
-        
        return castProcesado;
-        
     }
     
     /** Devuelve un String con el país del show
     * @return pais
     */
     public String getPais()
-    {
-        return pais;
+        {
+        String paisProcesada = pais;
+        paisProcesada = paisProcesada.replace('"',' ');
+        paisProcesada = paisProcesada.trim();
+        paisProcesada = paisProcesada.replaceAll(", ",",");
+        paisProcesada = paisProcesada.trim();
+        return paisProcesada;
     }
     
     /** Devuelve un String con la fecha de produccion del show
@@ -201,7 +150,6 @@ public class Pelicula
         catProcesada = catProcesada.trim();
         catProcesada = catProcesada.replaceAll(", ",",");
         catProcesada = catProcesada.trim();
-   
         
         return catProcesada;
     }
@@ -220,7 +168,6 @@ public class Pelicula
     public void setCategoria(String newCat)
     {
         categoria +=","+newCat;
-        
     }
     
     /** Este metodo imprime todos los valores de la pelicula
@@ -231,10 +178,5 @@ public class Pelicula
         System.out.println("Show id: "+ show_id + " Tipo: "+tipo+" Titulo: "+titulo+" Director: "+director+" Cast: "+cast+" Pais: "+pais+" Fecha: "+fecha+" Anio: "+anio+
         " Audiencia: "+audiencia+" Duracion: "+duracion+" Categoria: "+categoria+" Descripcion: "+descripcion);
     }
-    public void agregue(Pelicula peli)
-    {
-    
-    }
-    
-  
+    //Cierre de la clase
 }

@@ -6,7 +6,7 @@
  * El arbol funciona con numeros, sin embargo, el guardado de lo "filtrado" se guarda tal y como se ingreso en una listaSimple, con objetos Pelicuña
  * 
  * @author Randy Agüero B90082, Frayvin Alvarado B60292 y Andrés Serrano C07483
- * @version 20/7/2021
+ * @version 24/7/2021
  *
  */
 public class ArbolPeliculas
@@ -135,9 +135,9 @@ public class ArbolPeliculas
             }
             else
             {
-                peliculas = peliculas.peliculaDerecha;
                 masPeliculas = false;
             }
+            peliculas = peliculas.peliculaDerecha;
         }
         arbol.determineSiExisteHilera(arbol,nuevHil, true);
     }

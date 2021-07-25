@@ -1,26 +1,36 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.io.Serializable;
-
 /**
+ * Clase EntradaDatos, la cual pide los datos al usuario a ingresar.
+ * 
  * @author Randy Agüero B90082, Frayvin Alvarado B60292 y Andrés Serrano C07483
- * Esta clase se usara para pedir datos al usuario
+ * @version 24/7/2021
  */
 public class EntradaDatos implements Serializable
 
 {
-    
+     //Campos de la clase
     public EntradaDatos()
     {
-
-    }
+        //Esta clase solamente apoya al main.
+    }//Cierre del constructor
     
+    /**
+     * METODOS
+    */
+   
+    /**Pide los numeros a elegir
+     *@param mensaje
+     *@int opcionMaxima
+     *@int opcionMinima
+     *@return opcionElegida, la que se escogio
+     */
     public int pidaNumeroRango(String mensaje,int opcionMaxima, int opcionMinima)
     {
         boolean entradaIncorrecta = true;
         boolean numeroOpcionInvalido = true;
         int opcionElegida = opcionMinima-1;
-        //Se pedira mientras el usuario ingrese algo incorrecto, datos, en este caso seran numeros, que representan la eleccion del usuario
         while ((entradaIncorrecta)||(numeroOpcionInvalido))
         {
             try
@@ -48,12 +58,10 @@ public class EntradaDatos implements Serializable
         }
         return opcionElegida;
     }
-    
-    
-
    
-    /**
-     * Este metodo funciona para pedir un texto, como el nombre
+    /**Este metodo funciona para pedir un texto, como el nombre
+     * @param mensaje, que pida el texto
+     * @return texto
      */
     public String pidaTexto(String mensaje)
     {
@@ -75,12 +83,14 @@ public class EntradaDatos implements Serializable
                 texto = textoTemporal.trim();
             }
         }
-
         return texto;
     }
+    
     /**
      * Este metodo funciona para pedir un numero
-     * necesita un numero minimo
+     * @param mensaje
+     * @param numeroMinimo
+     * @return numero
      */
     public int pidaNumero(String mensaje,int numeroMinimo)
     {
@@ -108,10 +118,8 @@ public class EntradaDatos implements Serializable
             {
                 numeroOpcionInvalido = false;
             }
-
         }
         return numero;
     }
-    
-
+    //Cierre de la clase
 }

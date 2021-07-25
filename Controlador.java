@@ -3,11 +3,14 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Scanner;
-
 /**
-Clase encargada de leer todas las películas e instanciarlas en objetos Pelicula
- */
+*Clase Controlador, encargada de leer todas las películas e instanciarlas en objetos Pelicula. Ademas tiene el main.
+* 
+* @author Randy Agüero B90082, Frayvin Alvarado B60292 y Andrés Serrano C07483
+* @version 24/7/2021
+*/
 public class Controlador{
+     //Campos de la clase
     File movies;
     FileReader fire;
     BufferedReader bure;
@@ -15,7 +18,6 @@ public class Controlador{
     ArbolPeliculas arbolActores;
     ArbolPeliculas arbolTipo;
     ArbolPeliculas arbolPais;
-    ArbolPeliculas arbolClasificacion;
     Scanner scan;
     EntradaDatos entrada;
     /**
@@ -33,23 +35,19 @@ public class Controlador{
         arbolTipo.agregueHileraNueva(arbolTipo,"a");
         arbolPais =new ArbolPeliculas();
         arbolPais.agregueHileraNueva(arbolPais,"a");
-        arbolClasificacion = new ArbolPeliculas();
-        arbolClasificacion.agregueHileraNueva(arbolClasificacion,"a");
 
         scan = new Scanner(System.in);
         entrada = new EntradaDatos();
-    }
-
-    /*********************************************************************
-     *                  Administracion de lectura
-     * *******************************************************************
+    }//Cierre del constructor
+    
+    /**
+     * METODOS
+    */ 
+    /**Prueba de lectura
      */
-
     public void readTest()throws IOException{
         String line=bure.readLine();
         for(int i=0;i<10;i++){
-            //System.out.println(line+" ");
-            //Pelicula p = new Pelicula(line);
             line=bure.readLine();
             String x[] = line.split(";");
             for(int k=0;k<11;k++){
@@ -60,13 +58,12 @@ public class Controlador{
 
     }
 
-    /**
-    Lee e instancia todas las líneas del documento. Con cada línea leída crea un objeto película
+    /**Lee e instancia todas las líneas del documento. Con cada línea leída crea un objeto película
+     * 
      */
     public void lea()throws IOException{
-
         String line=bure.readLine();
-        for(int i=0;i<5;i++){
+        for(int i=0;i<7787;i++){
             //Crear los atributos de la pelicula:
             String show_id;
             String tipo;
@@ -125,85 +122,81 @@ public class Controlador{
             pos = line.indexOf(";");
             categoria=line.substring(0,pos);
             line=line.substring(pos+1,line.length());
-
+            
             pos = line.indexOf(";");
             descripcion=line.substring(0,pos);
             line=line.substring(pos+1,line.length());
 
             Pelicula p = new Pelicula(show_id,tipo,titulo,director,cast,pais,fecha,anio,audiencia,duracion,categoria,descripcion);
-
             if(i>1)
             {
-
                 agreguePeliculaArboles(p);
-
             }
             line=bure.readLine();
         }
-
     }
-
+    
+    /**Agrega las peliculas a los respectivos arboles.
+     *@param p, la pelicula a agregar
+     */
     public void agreguePeliculaArboles(Pelicula p)
     {
-
         arbolCategorias.agregueHilera(arbolCategorias,p.getCategoria());
         arbolActores.agregueHilera(arbolActores,p.getCast());
         arbolPais.agregueHilera(arbolPais,p.getPais());
-        arbolClasificacion.agregueHilera(arbolClasificacion,p.getTipo());
+        arbolTipo.agregueHilera(arbolTipo,p.getTipo());
 
         arbolCategorias = arbolCategorias.agreguePelicula(arbolCategorias,p.getCategoria(),p);
         arbolActores = arbolActores.agreguePelicula(arbolActores,p.getCast(),p);
         arbolPais = arbolPais.agreguePelicula(arbolPais,p.getPais(),p);
-        arbolClasificacion = arbolClasificacion.agreguePelicula(arbolClasificacion,p.getTipo(),p);
-
+        arbolTipo = arbolTipo.agreguePelicula(arbolTipo,p.getTipo(),p);
     }
-
-    /**
-    Cierra el FileReader y el BufferedReader
+    
+    /** Cierra el FileReader y el BufferedReader
+     * 
      */
     public void cierre() throws IOException {
         bure.close();
         fire.close();
     }
 
+    /** El menú muestra todas las posibilidades del programa. Se muestra una vez que se instanciaron las películas.
+     * 
+    */
     public void menu(){
-        //opciones: Cuáles películas pertenecen a una categoría específica//imprimir la lista de x categoría
-        //en cuales videos ha actuado una persona//imprimir la lista actores
-        //devolver la lista completa
-        //editar categoría
         boolean termine=false;
-        String opciones="¿Qué desea hacer?\n1. Buscar una categoría\n2.Buscar un actor/actriz\n3.Editar una categoría\n4. Salir";
+        String opciones="¿Qué desea hacer?\n1. Buscar una categoría\n2.Buscar un actor/actriz\n3.Editar una categoría\n4. Mostrar las películas por país";
+        opciones+="\n5. Mostrar las películas por tipo\n6. Salir";
         while(termine!=true){
-            //System.out.println(opciones);
-            int decision=entrada.pidaNumeroRango(opciones,4,1);
-
+            int decision=entrada.pidaNumeroRango(opciones,6,1);
             switch(decision){
                 case 1:
+                arbolCategorias.muestreFiltradoArbol(arbolCategorias,false);
                 String input=entrada.pidaTexto("Escogió el 1. Inserte la categoría que quiere buscar");
                 if(arbolCategorias.determineSiExisteHilera(arbolCategorias,input,false) ==  true){
-                    ListaPeliculas x = arbolCategorias.retorneListaPeliculas(arbolCategorias,input);
-                    //x.muestre();
+                    arbolCategorias.determineSiExisteHilera(arbolCategorias,input,true);
                 }else{
                     System.out.println("La categoría insertada no existe");
                 }
                 break;
                 case 2:
+                arbolActores.muestreFiltradoArbol(arbolActores,false);
                 String input2=entrada.pidaTexto("Escogió el 2. Inserte la persona que quiere buscar");
-                if(arbolActores.determineSiExisteHilera(arbolCategorias,input2,false)){
-                    ListaPeliculas x = arbolActores.retorneListaPeliculas(arbolCategorias,input2);
-                    //x.muestre();
+                if(arbolActores.determineSiExisteHilera(arbolActores,input2,false)){
+                    arbolActores.determineSiExisteHilera(arbolActores,input2,true);
                 }else{
                     System.out.println("El/la actor/actriz insertado/a no existe");
                 }
                 break;
                 case 3:
-                arbolCategorias.muestreFiltradoArbol(arbolCategorias,true);
+                arbolCategorias.muestreFiltradoArbol(arbolCategorias,false);
                 String catEscogida=entrada.pidaTexto("Escogió el 3. Escriba  alguna de las categorías");
                 boolean existe =  arbolCategorias.determineSiExisteHilera(arbolCategorias,catEscogida,false);
 
                 if((arbolCategorias.determineSiExisteHilera(arbolCategorias,catEscogida,false)==true)){
                     String nuevoNombre = entrada.pidaTexto("La categoría existe, inserte el nombre de la nueva categoría");
                     arbolCategorias.editeCategoria(arbolCategorias,catEscogida,nuevoNombre);
+                    arbolCategorias.determineSiExisteHilera(arbolCategorias,nuevoNombre,true);
                 }
                 else
                 {
@@ -211,23 +204,41 @@ public class Controlador{
                 }
                 break;
                 case 4:
+                arbolPais.muestreFiltradoArbol(arbolPais,false);
+                String paisEscogido = entrada.pidaTexto("Escogió el 4. Escriba alguno de los países");
+                if(arbolPais.determineSiExisteHilera(arbolPais,paisEscogido,false)==true){
+                    arbolPais.determineSiExisteHilera(arbolPais,paisEscogido,true);
+                }else{
+                    System.out.println("Error no existe país o no existen películas de dicho país");
+                }
+                break;
+                case 5:
+                arbolTipo.muestreFiltradoArbol(arbolTipo,false);
+                String tipoEscogido = entrada.pidaTexto("Escogió el 5. Escriba alguno de los tipos");
+                if(arbolTipo.determineSiExisteHilera(arbolTipo,tipoEscogido,false)==true){
+                    arbolTipo.determineSiExisteHilera(arbolTipo,tipoEscogido,true);
+                }else{
+                    System.out.println("Error no existe tipo");
+                }
+                break;
+                case 6:
+                System.out.println("Escogió 6. Adiós");
                 termine=true;
                 break;
             }
         }
-        //
     }
 
-    /*********************************************************************
-     * Administracion de categorias
-     * *******************************************************************
+    /**El metodo main que controla todas las clases
+     * 
      */
-
     public static void main(String[]Args)throws IOException{
         Controlador test = new Controlador();
-        test.lea();     
+        test.lea();  
+        System.out.println("Pueden existir peliculas repetidas.");
         System.out.println("Peliculas ya ha sido cargadas");
         test.menu();
         test.cierre();
     }
+    //Cierre de la clase
 }
